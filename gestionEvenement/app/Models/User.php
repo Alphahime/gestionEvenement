@@ -17,9 +17,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'prenom',
+        'nom',
+        'telephone',
+        'adresse',
         'email',
-        'password',
+        'mdp',
     ];
 
     /**
@@ -43,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function evenements(){
+
+        return $this->belongsToMany(Evenement::class,'reservations');
     }
 }
