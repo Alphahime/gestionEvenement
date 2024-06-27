@@ -1,0 +1,133 @@
+
+
+/*age ajouter evenement*/
+
+.body,label{
+    font-family: poppins;
+    color:#1D275F ;
+    
+}
+
+
+
+
+
+#h1{
+    color: #1D275F;
+   
+    font-family: poppins;
+}
+
+
+#nom{
+    border-color: #FFC441;
+    width: 372px;
+    height: 81px;
+}
+
+#lieu{
+    border-color: #FFC441;
+    width: 372px;
+    height: 81px;
+    
+}
+#date{
+    border-color: #FFC441;
+    width: 372px;
+    height: 81px;
+}
+#nombre{
+    border-color: #FFC441;
+    width: 372px;
+    height: 81px;
+}
+#date_limite{
+    border-color: #FFC441;
+    width: 832px;
+    height: 81px;
+}
+#image{
+    border-color: #FFC441;
+    width: 372px;
+    height: 81px;
+}
+#description{
+    border-color: #FFC441;
+    width: 832px;
+    height: 149px;
+}
+
+#ajouter_evenement{
+    width: 200px;
+    height: 65px;
+    color: #1D275F;
+    font-family: poppins;
+}
+
+.premier{
+    display: flex;
+    gap: 2em;
+}
+
+.deuxieme{
+    display: flex;
+    gap: 4em;
+}
+
+@media screen and (max-width:480px){
+
+    #h1{
+        text-align: center;
+    }
+    
+    .premier{
+        display: block;
+    }
+
+    .deuxieme{
+        display: block;
+    }
+
+    #description{
+        width: 360px;
+    }
+
+    #date_limite{
+        width: 360px;
+    }
+
+    #ajouter_evenement{
+        width: 360px;
+        font-family: poppins;
+    }
+
+    #nom{
+        width: 360px;
+    }
+    #lieu{
+        width: 360px;
+    }
+    #nombre{
+        width: 360px;
+    }
+
+    #image{
+        width: 360px;
+    }
+
+    #date{
+        width: 360px;
+    }
+
+    .form{
+        padding: 2rem;
+        
+    }
+
+    .body{
+        overflow-x: hidden;
+        
+    }
+}
+
+
