@@ -11,7 +11,7 @@ class Evenement extends Model
     
     protected $fillable=[
         'nom',
-        'categorie',
+        'image',
         'date',
         'lieu',
         'description',
