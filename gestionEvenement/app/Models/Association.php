@@ -17,6 +17,10 @@ class Association extends Model
         'contact',
         'secteur_activite',
         'date_creation',
+        'logo',
+        'email',
+        'password',
+        'ninea',
     
     ];
 
