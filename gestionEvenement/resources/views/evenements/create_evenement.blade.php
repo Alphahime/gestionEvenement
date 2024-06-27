@@ -10,7 +10,7 @@
 </head>
 <body  class="container">
     <div class="container mt-5">
-        <h1 id="h1">Ajouter un événement</h1>
+        <h1 id="h1_ajout_evenement">Ajouter un événement</h1>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">

@@ -19,7 +19,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.create_rule');
     }
 
     /**

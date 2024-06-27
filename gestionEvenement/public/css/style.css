@@ -5,6 +5,7 @@
 .body,label{
     font-family: poppins;
     color:#1D275F ;
+    font-size: 25px;
     
 }
 
@@ -12,7 +13,7 @@
 
 
 
-#h1{
+#h1_ajout_evenement{
     color: #1D275F;
    
     font-family: poppins;
@@ -62,6 +63,7 @@
     height: 65px;
     color: #1D275F;
     font-family: poppins;
+    font-size: 25px;
 }
 
 .premier{
@@ -74,9 +76,35 @@
     gap: 4em;
 }
 
+/* Ajouter Role*/
+
+#nom_role{
+    border-color: #FFC441;
+    width: 372px;
+    height: 81px;
+}
+
+#permission{
+    border-color: #FFC441;
+    width: 372px;
+    height: 81px;
+}
+
+#ajouter_role{
+    width: 200px;
+    height: 65px;
+    color: #1D275F;
+    font-family: poppins;
+    font-size: 25px;
+}
+
+
+
 @media screen and (max-width:480px){
 
-    #h1{
+    /*ajouter evenement*/
+    
+    #h1_ajout_evenement{
         text-align: center;
     }
     
@@ -128,6 +156,25 @@
         overflow-x: hidden;
         
     }
+
+    /* ajouter Role*/
+
+    #ajouter_role{
+        width: 360px;
+    }
+
+    #nom_role{
+        width: 360px;
+    }
+   
+    #permission{
+        width: 360px;
+    }
+
+    #h1_ajout_role{
+        margin-top: 10px;
+        text-align: center;
+        font-family: poppins;
+        color: #1D275F;
+    }
 }
-
-
