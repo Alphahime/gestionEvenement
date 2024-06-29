@@ -1,0 +1,329 @@
+ h1{
+    font-size: 32px;
+    color: #081542;
+    text-align: center;
+    margin-top:100px;
+    font-family: poppins;
+
+}
+
+
+.nom_compet {
+    display: flex;
+   
+}
+
+body{
+    overflow-x: hidden;
+
+
+}
+
+/* style des inputs */
+ input{
+    border: 1px solid #FFC441;
+    width: 660px;
+    height: 70px;
+    border-radius: 9px;
+    margin-top: 30px;
+    margin-left: 40px;
+  
+}
+.label_input{
+    display: flex;
+}
+
+
+   .form{
+    display: inline-block;
+    overflow-x: hidden; 
+   }
+
+   form{
+
+    margin-left: 115px;
+
+   }
+   label{
+    font-family: poppins;
+    font-size: 26px;
+    margin-top: 12px;
+   }
+   .vertical label{
+     display: flex;
+     margin-left: 50px;
+     margin-bottom: -10px;
+   }
+   .bouton{
+    background-color: #FFC441;
+    font-family: poppins;
+    font-size: 26px;
+   }
+   ::placeholder{
+    font-size: 26px;
+
+   } 
+
+   .costum_hr{
+    border: 0;
+    height: 2px;
+    background-color: #FFC441;
+    margin: 50px 0;
+    width: 660px;
+    margin-left: 550px;
+   }
+
+   .question {
+    text-align: center;
+    font-size: 20px;
+   }
+
+   .question p a {
+    text-decoration: none;
+    
+   }
+
+ 
+
+
+
+
+   /* les reseau */
+
+   .nm_complet{
+    flex-direction: column;
+   }
+
+   .connexion{
+    margin-left: 400px;
+   }
+
+   .composant_bouton input{
+    width: 200px;
+    height: 65px;
+   }
+
+   .boutton{
+    background-color: #FFC441;
+    font-family: poppins;
+    font-size: 26px;
+    margin-left: 439px;
+    width: 669px;
+
+   }
+
+   .reseau{
+    display: flex;
+    margin-left: 400px;
+    width: 660px;
+   }
+
+   .reseau input{
+    width: 170px;
+    height: 48px;
+   }
+   
+   .input-container {
+    position: relative;
+    margin: 10px 0;
+}
+
+.input-container input {
+    width: 95%;
+    /* padding: 10px 40px 10px 10px; */
+    padding-left: 60px;
+    box-sizing: border-box;
+    
+}
+
+.input-container .icon {
+    position: absolute;
+    top: 65%;
+    /* right: 10px; */
+    margin-left: 60px;
+    transform: translateY(-50%);
+    font-size: 26px;
+    color:black;}
+
+    ::placeholder{
+        font-size: 26px;
+        font-size: poppins;
+    
+       }
+
+       /* css pour les assos */
+       .element_compet input{
+        display: flex;
+        width: 420px;
+
+       }
+
+       textarea {
+        margin-left: 39px;
+        margin-top: 50px;
+        border: 1px solid #FFC441;
+        border-radius: 9px;
+       }
+
+
+       /* Media queries for responsiveness  pour les formulaire*/
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+        margin-top: 50px;
+    }
+
+    .nom_compet {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+    }
+
+    input {
+        width: 350px; /* Adjust width for smaller screens */
+        margin-left: 1px; /* Center inputs */
+    }
+
+    form {
+        margin-left: 0; /* Center form on smaller screens */
+        padding: 0 20px; /* Add padding for mobile screens */
+    }
+
+    label {
+        font-size: 20px;
+        margin-left: 20px;
+    }
+
+    .vertical label {
+        margin-left: 20px; /* Adjust label margin for smaller screens */
+    }
+
+    .composant_bouton {
+        width: 300px; /* Full width button for mobile */
+        margin-left: 20px; /* Center button */
+        font-size: 20px; /* Adjust font size for mobile */
+    }
+
+    ::placeholder {
+        font-size: 20px; /* Adjust placeholder font size for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .nom_compet label {
+        display: none;
+    }
+
+    .bouton {
+        font-size: 18px;
+    }
+
+    ::placeholder {
+        font-size: 18px;
+    }
+}
+/* responsivite connexion */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 25px;
+        margin-top: 170px;
+    }
+   .connexion input{
+    width: 360px;
+    height: 61px;
+    margin-left: -1px;
+
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+  
+    ::placeholder {
+        font-size: 18px;
+    }
+
+    .input-container input {
+        padding-left: 30px;
+        width: 120px;
+    }
+
+    .input-container ::placeholder{
+        font-size: 15px;
+    }
+
+
+    .input-container .icon {
+        margin-left: 20px; /* Further adjust icon position */
+        font-size: 18px;
+        margin-top: -10px;
+    }
+
+    form{
+        margin-top: 20px;
+        margin-left: -12px;
+        overflow-x: hidden;
+    }
+   
+
+    .nom_compet, .reseau, .connexion {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 10px;
+    }
+
+    .reseau {
+        display: flex;
+        margin-left: 0px;
+    }
+    .connexion label{
+        display: none;
+    }
+
+    
+
+    .reseau input {
+        width: 106px;
+        margin: 5px 10px;
+        height: 46px;
+    }
+
+    .composant_bouton input{
+        width: 365px;
+        margin: 5px 10px;
+        height: 62px;
+        margin-left: -11px;
+        margin-top: 25px;
+
+    }
+
+    .element_compet {
+        display: flex;
+    }
+
+    .element_compet input{
+        width: 105px;
+        margin-left: 14px;
+        height: 46px;
+    }
+    .element_compet label{
+        display: none;
+    }
+
+    textarea{
+        width: 355px;
+        margin-left: 13px;
+    }
+    .vertical label{
+        display: none;
+    }
+
+    .costum_hr{
+    margin-left: 25px;
+    width: 330px;
+    }
+}

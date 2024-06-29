@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
 
+use App\Http\Requests\CreateAuthRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users=User::all()   ;
-        return view('admins.liste_user',compact('users'));
+        //
     }
 
     /**
@@ -21,15 +21,23 @@ class AdminController extends Controller
      */
     public function create()
     {
-        // 
+        return view('users.auth');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateAuthRequest $request)
+
     {
-        //
+      
+        if(auth()->attempt($request->only('email','password'))) {
+            // Authentification réussie, rediriger vers une autre route
+            return redirect()->route('association.create')->with('success', 'Connexion réussie.');
+        } else {
+            // Échec de l'authentification, rediriger vers la route de connexion avec une erreur
+            return redirect()->route('users.create')->withErrors(['password' => 'Adresse e-mail ou mot de passe incorrect.']);
+        }
     }
 
     /**
@@ -61,6 +69,6 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // 
     }
 }

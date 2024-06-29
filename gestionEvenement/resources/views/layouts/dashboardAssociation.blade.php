@@ -11,6 +11,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
    
     <style>
+
+    body{
+            font-family: poppins;
+        }
        
         .sidebar {
             background-color: #08143F;
@@ -68,23 +72,31 @@
                     </a>
                 </li>
             </ul>
+            
             <div class="logout">
                 <a href="#" class="block py-2 px-4 hover:bg-yellow-500 hover:text-white">
                     <i class="fas fa-sign-out-alt mr-2 text-yellow-500"></i> Déconnexion
                 </a>
             </div>
         </div>
+      
         
         </div>
-        
+
+       
     </div>
-  
+
+    <div class="flex-1 p-6">
+        @yield('content')
+    </div>
+      
     <style>
         .logout{
             margin-top: 30rem;
         }
     </style>
-    <!-- Scripts -->
+   
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 </body>
 

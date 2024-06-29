@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evenement;
+use App\Http\Requests\CreateAssociationRequest;
+use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AssociationController extends Controller
 {
@@ -12,24 +15,27 @@ class AssociationController extends Controller
      */
     public function index()
     {
-        // Récupérer les événements
-        $evenements = Evenement::all();
-        return view('associations.index', compact('evenements'));
+        $associations=Association::all();
+        return view('admins.liste_association',compact('associations'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('associations.inscription_assos');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CreateAssociationRequest $request)
+    {   
+    // hachage du mot de pass
+     $request->merge(['password'=>Hash::make($request->password)]);
+        Association::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -37,7 +43,8 @@ class AssociationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // 
+        
     }
 
     /**
@@ -45,15 +52,19 @@ class AssociationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $association = Association::findOrFail($id);
+        return view('associations.edit', compact('association'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreateAssociationRequest $request, string $id)
     {
-        //
+       $association=Association::find($id);
+       $association->update($request->all());
+       return redirect('association');
+       
     }
 
     /**
@@ -61,6 +72,8 @@ class AssociationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $association=Association::find($id);
+        $association->delete();
+        return redirect('association');
     }
 }

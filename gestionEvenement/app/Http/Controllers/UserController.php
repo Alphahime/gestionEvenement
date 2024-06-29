@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -11,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+    //    
     }
 
     /**
@@ -19,15 +23,22 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.inscription');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        // Hacher le mot de passe et ajouter aux données validées
+        // $request->merge(['mdp' => Hash::make($request->mdp)]);
+
+        // Créer un nouvel utilisateur avec les données validées et le mot de passe haché
+        User::create($request->all());
+
+        // Rediriger l'utilisateur après la création
+        return redirect()->back()->with('success', 'Utilisateur créé avec succès');
     }
 
     /**
@@ -43,7 +54,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user=User::find($id);
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -51,7 +63,9 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user=User::find($id);
+        $user->update($request->all());
+        return redirect('users');
     }
 
     /**
@@ -59,6 +73,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user=User::find($id);
+        $user->delete();
+        return redirect()->back();
     }
 }
