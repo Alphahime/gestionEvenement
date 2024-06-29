@@ -16,7 +16,7 @@ class AssociationController extends Controller
     public function index()
     {
         $associations=Association::all();
-        return view('associations.index',compact('associations'));
+        return view('admins.liste_association',compact('associations'));
     }
 
     /**
