@@ -74,6 +74,81 @@
     gap: 4em;
 }
 
+/*page d'acceuil*/
+
+.banniere{
+    display: flex;
+    gap: 50px;
+}
+#bouton_inscription{
+    font-family: poppins;
+    width: 284px;
+    height: 56px;
+    font-size: 24px;
+    border-radius: 50px;
+    background-color: #FFC441;
+}
+
+.carte{
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+    
+    
+}
+
+.carte1{
+    border: solid black 1px;
+    background-color: #1D275F;
+    font-family: poppins;
+    
+}
+.carte2{
+    border: solid black 1px;
+    background-color: #1D275F;
+    font-family: poppins;
+}
+.carte3{
+    border: solid black 1px;
+    background-color: #1D275F;
+    font-family: poppins;
+    
+}
+
+.a_propos{
+    display: flex;
+    gap: 50px;
+}
+#creer_evenement{
+    font-family: poppins;
+    width: 284px;
+    height: 56px;
+    font-size: 24px;
+    border-radius: 50px;
+    background-color: #FFC441;
+}
+
+.carte_eve{
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    color: white;
+    /* margin-top: ; */
+}
+.carte1_eve{
+    border: solid black 1px;
+    background-color: #1D275F;
+}
+.carte2_eve{
+    border: solid black 1px;
+    background-color: #1D275F;
+}
+.carte3_eve{
+    border: solid black 1px;
+    background-color: #1D275F;
+}
 @media screen and (max-width:480px){
 
     #h1{
