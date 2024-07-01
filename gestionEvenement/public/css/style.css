@@ -11,6 +11,17 @@
 
 
 
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+
 
 #h1{
     color: #1D275F;
@@ -64,6 +75,8 @@
     font-family: poppins;
 }
 
+
+
 .premier{
     display: flex;
     gap: 2em;
@@ -79,6 +92,7 @@
 .banniere{
     display: flex;
     gap: 50px;
+    background-color: #F2F4FF;
 }
 #bouton_inscription{
     font-family: poppins;
@@ -97,21 +111,28 @@
     margin-top: 50px;
     
     
+
+    
+    
+    
 }
 
 .carte1{
     border: solid black 1px;
+    border-radius: 10px;
     background-color: #1D275F;
     font-family: poppins;
     
 }
 .carte2{
     border: solid black 1px;
+    border-radius: 10px;
     background-color: #1D275F;
     font-family: poppins;
 }
 .carte3{
     border: solid black 1px;
+    border-radius: 10px;
     background-color: #1D275F;
     font-family: poppins;
     
@@ -132,23 +153,115 @@
 
 .carte_eve{
     display: flex;
+  
     gap: 20px;
     text-align: center;
     color: white;
-    /* margin-top: ; */
+  
+    
+ 
 }
 .carte1_eve{
     border: solid black 1px;
     background-color: #1D275F;
+    border-radius: 20px;
 }
 .carte2_eve{
     border: solid black 1px;
     background-color: #1D275F;
+    border-radius: 20px;
 }
-.carte3_eve{
+
+#bouton_detail{
+    width: 320px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #FFC441;
+}
+
+.h1_evenement{
+    text-align: center;
+}
+
+.infos_evenement1{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+#infos1{
     border: solid black 1px;
+    background-color: white;
+    color: black;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+}
+#infos2{
+    border: solid black 1px;
+    background-color: white;
+    color: black;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+#infos3{
+    border: solid black 1px;
+    background-color: white;
+    color: black;
+    width: 350px;
+    height: 50px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.infos_evenement2{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+/*page detail*/
+
+.section1{
+    display: flex;
+    gap: 80px;
+}
+
+.infos_detail{
+    border: solid black 1px;
+    padding: 20px;
     background-color: #1D275F;
 }
+#infos_detail1{
+   border: solid black 1px;
+   border-radius: 30px;
+   width: 300px;
+   height: 50px;
+   text-align: center;
+   font-size: 36px;
+   background-color: white;
+   
+}
+
+
+#bouton_reserver{
+    font-family: poppins;
+    width: 284px;
+    height: 56px;
+    font-size: 24px;
+    border-radius: 50px;
+    background-color: #FFC441;
+}
+    
+
+/* navbar et footer*/
+
+
+
+
+/*Version Mobile*/
 @media screen and (max-width:480px){
 
     #h1{
@@ -203,6 +316,88 @@
         overflow-x: hidden;
         
     }
+
+    /*page acceuil*/
+
+    .banniere{
+        display: block;
+    }
+
+    #img_ban{
+        width: 450px;
+        margin: 10px;
+    }
+    .carte{
+        display: block;
+        justify-content: space-between;
+        margin: 10px;
+    }
+
+    .carte1{
+        margin-top: 40px;
+    }
+    .carte2{
+        margin-top: 30px;
+    }
+    .carte3{
+        margin-top: 30px;
+    }
+    .a_propos{
+        display: block;
+    }
+
+    #h1_evenement{
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .carte_eve{
+        display: block;
+        margin: 10px;
+    }
+
+    .carte1_eve{
+        
+        border-radius: 20px;
+    }
+
+    .carte2_eve{
+        
+        margin-top: 30px;
+        border-radius: 20px;
+    }
+
+
+
+    
+.text_ban{
+    margin: 10px;
+    text-align: center;
+}
+.text_propos{
+    text-align: center;
+    margin: 10px;
+}
+#img_propos{
+    width: 450px;
+    margin: 10px;
+}
+
+/*page detail*/
+.section1{
+    display: block;
+    margin: 10px;
+    text-align: center;
+}
+
+#img_detail{
+    width: 450px;
+    margin: 10px;
+}
+
+.infos_detail{
+    text-align: center;
+}
 }
 
 

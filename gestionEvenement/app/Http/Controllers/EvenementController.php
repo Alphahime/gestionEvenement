@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Association;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class EvenementController extends Controller
      */
     public function index()
     {
-        //
+        $evenements= Evenement::all();
+        
+        return view('landingpage', compact('evenements'));
     }
 
     /**
@@ -60,30 +63,13 @@ class EvenementController extends Controller
      */
     public function show(string $id)
     {
-        //
+       $evenements= Evenement::find($id); 
+        
+        return view('show', compact('evenements'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+   
 }
