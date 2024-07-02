@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+       'association' => [ // Ajoutez le guard 'association'
+        'driver' => 'session',
+        'provider' => 'associations', // Remplacez par le nom de votre fournisseur
+    ],
     ],
 
     /*
@@ -64,6 +69,11 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+
+        'associations' => [ // Ajoutez le fournisseur 'associations'
+        'driver' => 'eloquent',
+        'model' => App\Models\Association::class, // Remplacez par le nom de votre modèle
+    ],
 
         // 'users' => [
         //     'driver' => 'database',

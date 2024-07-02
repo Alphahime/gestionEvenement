@@ -148,7 +148,7 @@
         </div> 
     </form>
     <div class="question"><hr class="costum_hr">
-        <p>vous n'avez pas de compte? <a href="{{ route('authuser.create') }}">se connecter</a></p> 
+        <p>vous n'avez pas de compte? <a href="">se connecter</a></p> 
      </div>
 </body>
 </html>
