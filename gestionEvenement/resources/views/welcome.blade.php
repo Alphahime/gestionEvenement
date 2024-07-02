@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -177,3 +178,6 @@
         </div>
     </body>
 </html>
+=======
+<h1>Bienvenue</h1>
+>>>>>>> origin/feature/landingpage

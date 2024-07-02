@@ -1,9 +1,18 @@
-body, label {
-    font-family: 'Poppins', sans-serif;
-    color: #1D275F;
+
+
+/*age ajouter evenement*/
+
+.body,label{
+    font-family: poppins;
+    color:#1D275F ;
+    
 }
 
-#h1 {
+
+
+
+
+#h1{
     color: #1D275F;
     font-family: 'Poppins', sans-serif;
 }
@@ -28,14 +37,22 @@ body, label {
     font-family: 'Poppins', sans-serif;
 }
 
+
+
 .premier, .deuxieme {
     display: flex;
     gap: 2em;
 }
 
-@media screen and (max-width: 768px) {
-    .form {
-        margin-left: 0;
+.deuxieme{
+    display: flex;
+    gap: 4em;
+}
+
+@media screen and (max-width:480px){
+
+    #h1{
+        text-align: center;
     }
     .premier, .deuxieme {
         display: block;
@@ -117,6 +134,7 @@ body, label {
     }
     body {
         overflow-x: hidden;
+        
     }
 }
 
