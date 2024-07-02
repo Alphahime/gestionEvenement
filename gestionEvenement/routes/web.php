@@ -3,14 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Evenement;
 use Illuminate\Support\Facades\Route;
 
-
-use App\Http\Controllers\EvenementController;
-use App\Models\Evenement;
 
 Route::get('/', function () {
     return view('welcome');
