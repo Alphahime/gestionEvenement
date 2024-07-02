@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Association;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,15 @@ class EvenementController extends Controller
      */
     public function index()
     {
+
         // Récupérer les événements
         $evenements = Evenement::all();
         return view('evenements.index', compact('evenements'));
+
+        $evenements= Evenement::all();
+        
+        return view('landingpage', compact('evenements'));
+
     }
 
     /**
@@ -68,12 +75,15 @@ class EvenementController extends Controller
      */
     public function show(string $id)
     {
-        //
+       $evenements= Evenement::find($id); 
+        
+        return view('show', compact('evenements'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+
     public function edit(Evenement $evenement)
     {
         return view('evenements.edit', compact('evenement'));
@@ -115,4 +125,7 @@ class EvenementController extends Controller
 
         return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès');
     } 
+
+   
+
 }
