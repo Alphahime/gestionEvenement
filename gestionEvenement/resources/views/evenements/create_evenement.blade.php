@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <title>Ajouter Evenement</title>
 </head>
-<body class="container">
+<body class="container"> 
+
+
     <div class="container mt-5">
         <h1 id="h1">Ajouter un événement</h1>
 
@@ -71,5 +73,4 @@
             <button type="submit" class="btn btn-warning" id="ajouter_evenement">Ajouter</button>
         </form>
     </div>
-</body>
-</html>
+</body> 
