@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\EvenementController;
-
-
+use App\Models\Evenement;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+require __DIR__.'/auth.php';
 
 // route pour afficher le formulaire d'inscription pour le user simple
 Route::resource('users', UserController::class);
@@ -56,8 +56,8 @@ Route::get('evenements_admin',[EvenementController::class,'afficher']);
 Route::get('supprimer_evenement/{id}',[EvenementController::class,'suppression']);
 
 // route pour la desactivation du compte de l'association
-Route::post('desactivation/{id}', [AssociationController::class, 'deactivation'])->name('desactivation');
-Route::post('activation/{id}', [AssociationController::class, 'activation'])->name('activation');
+Route::post('desactivation/{id}', [EvenementController::class, 'deactivation'])->name('desactivation');
+Route::post('activation/{id}', [EvenementController::class, 'activation'])->name('activation');
 
 
 

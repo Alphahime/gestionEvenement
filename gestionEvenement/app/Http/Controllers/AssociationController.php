@@ -28,15 +28,10 @@ class AssociationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-
-    {$association = Auth::user();
-        if (!$association->active) { 
-            return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
-        }
-        else {
+    public function create(){
+   
             return view('associations.inscription_assos');
-            }
+            
         
     }
 
@@ -92,19 +87,5 @@ class AssociationController extends Controller
 
     // route pour deasctiviter le compte de l'association
 
-    public function deactivation($id){
-        $association=Association::find($id);
-        $association->active=false;
-        $association->save();
-
-        return redirect()->back()->with('success', 'Le compte de l\'association a été désactivé avec succès.');
-    }
-
-    public function activation($id){
-        $association=Association::find($id);
-        $association->active=true;
-        $association->save();
-
-        return redirect()->back()->with('success', 'Le compte de l\'association a été active  avec succès.');
-    }
+   
 }

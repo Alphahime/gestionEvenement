@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Association;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EvenementController extends Controller
 {
@@ -24,12 +25,41 @@ class EvenementController extends Controller
 
     }
 
+    public function deactivation($id){
+        $association=Association::find($id);
+        $association->active=false;
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le compte de l\'association a été désactivé avec succès.');
+    }
+
+    public function activation($id){
+        $association=Association::find($id);
+        $association->active=true;
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le compte de l\'association a été active  avec succès.');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
+    
     {
-        return view('evenements.create_evenement');
+        $association = Auth::guard('association')->user(); // Récupérer l'utilisateur authentifié avec la garde 'association'
+
+if (!$association->active) { 
+    return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
+} else {
+    // Récupérer l'ID de l'association
+    $associationId = $association->id;
+
+    // Vous pouvez maintenant utiliser $associationId pour l'utiliser dans la création d'événement ou pour toute autre opération
+    return view('evenements.create_evenement', compact('associationId'));
+}
+
+        
     }
     /**
      * Store a newly created resource in storage.
@@ -43,7 +73,7 @@ class EvenementController extends Controller
             'description' => 'required|string',
             'nombre_place' => 'required|integer',
             'date_limite_inscription' => 'required|date',
-            'association_id' => 'required|integer|exists:associations,id',
+            // 'association_id' => 'required|integer|exists:associations,id',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
