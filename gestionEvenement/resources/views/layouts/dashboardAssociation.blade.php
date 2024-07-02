@@ -16,6 +16,7 @@
             background-color: #08143F;
             border-radius: 1rem;
             width: 350px;
+            
         }
 
         .sidebar a {

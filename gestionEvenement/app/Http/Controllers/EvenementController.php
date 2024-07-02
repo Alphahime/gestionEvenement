@@ -12,7 +12,9 @@ class EvenementController extends Controller
      */
     public function index()
     {
-        //
+        // Récupérer les événements
+        $evenements = Evenement::all();
+        return view('evenements.index', compact('evenements'));
     }
 
     /**
@@ -28,7 +30,13 @@ class EvenementController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
+            'nom' => 'required|string|max:255',
+            'date' => 'required|date',
+            'lieu' => 'required|string|max:255',
+            'description' => 'required|string',
+            'nombre_place' => 'required|integer',
+            'date_limite_inscription' => 'required|date',
+            'association_id' => 'required|integer|exists:associations,id',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -66,24 +74,45 @@ class EvenementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Evenement $evenement)
     {
-        //
+        return view('evenements.edit', compact('evenement'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Evenement $evenement)
     {
-        //
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'lieu' => 'required|string|max:255',
+            'nombre_place' => 'required|integer',
+            'date' => 'required|date',
+            'date_limite_inscription' => 'required|date',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $chemin_image = $request->file('image')->store('public/images');
+            $data['image'] = basename($chemin_image);
+        }
+
+        $evenement->update($data);
+
+        return redirect()->route('evenements.index')->with('success', 'Événement modifié avec succès');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Evenement $evenement)
     {
-        //
-    }
+        $evenement->delete();
+
+        return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès');
+    } 
 }

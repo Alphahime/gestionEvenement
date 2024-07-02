@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evenement;
+
 use Illuminate\Http\Request;
 
 class AssociationController extends Controller
@@ -12,9 +12,7 @@ class AssociationController extends Controller
      */
     public function index()
     {
-        // Récupérer les événements
-        $evenements = Evenement::all();
-        return view('associations.index', compact('evenements'));
+        
     }
     /**
      * Show the form for creating a new resource.
