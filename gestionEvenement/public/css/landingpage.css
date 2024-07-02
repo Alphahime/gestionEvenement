@@ -1,0 +1,305 @@
+/* Styles généraux */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles pour la bannière */
+.banniere {
+    background-color: #F2F4FF;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 600px;
+    width: 100%;
+    padding-left: 13rem;
+}
+
+.banniere img {
+    max-width: 100%; 
+}
+
+.text_ban {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.text_ban h2 {
+    font-size: 45px;
+    font-weight: bold;
+    line-height: 1.5;
+   
+}
+
+.text_ban p {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+#bouton_inscription {
+    background-color: #FFC441;
+    color: #08143F;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 2rem;
+    margin-top: 2rem;
+}
+
+#bouton_inscription:hover {
+    background-color: #FFC441;
+}
+
+/* Styles pour les cartes */
+.carte {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.carte1, .carte2, .carte3 {
+    width: 30%;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    background-color: #08143F;
+}
+
+.carte h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #FFC441;
+}
+
+.carte p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.carte img {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Styles pour la section "À propos" */
+.a_propos {
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 15rem;
+    padding-right: 3rem;
+    width: 90%;
+    height: 600px;
+}
+
+.a_propos img {
+    max-width: 100%; 
+    height: auto;
+}
+
+.text_propos {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.text_propos h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.text_propos p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#creer_evenement {
+    background-color: #FFC441;
+    color: #08143F;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 2rem;
+}
+
+#creer_evenement:hover {
+    background-color: #FFC441;
+}
+
+/* Styles pour la liste des événements */
+#liste_evenements {
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; 
+    margin: 20px 0;
+    padding-bottom: 20px; 
+}
+
+.carte_eve {
+    width: 30%; 
+    padding: 20px;
+    background-color: #08143F; 
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; 
+    color: white; 
+}
+.carte_eve img {
+    width: 150px;
+    height: 150px; 
+    margin-bottom: 10px;
+}
+
+.infos_evenement {
+    margin-top: 20px;
+}
+
+/* Alignement latéral pour les informations */
+.infos_lateral {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff; 
+    padding: 10px;
+    margin-top: 10px;
+    color: black;
+    border-radius: 2rem;
+}
+
+.infos_lateral p {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.infos_lateral .icon {
+    margin-right: 10px;
+    color: #FFC441; 
+    font-size: 24px;
+}
+
+#bouton_detail {
+    background-color: #FFC441;
+    color: #08143F;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; 
+    text-decoration: none;
+    border-radius: 2rem;
+    margin-top: 1rem;
+}
+
+#bouton_detail:hover {
+    background-color: #e0a800;
+}
+
+/* Pour les tablettes */
+@media screen and (max-width: 1024px) {
+    .banniere {
+        flex-direction: column;
+        height: auto; /* Ajustez la hauteur si nécessaire */
+        padding-left: 1rem;
+    }
+
+    .text_ban {
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .carte {
+        flex-wrap: wrap;
+    }
+
+    .carte1, .carte2, .carte3 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .a_propos {
+        flex-direction: column;
+        height: auto; /* Ajustez la hauteur si nécessaire */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .text_propos {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+}
+
+/* Pour les téléphones */
+@media screen and (max-width: 768px) {
+    .banniere {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .banniere img {
+        width: 100%; 
+    }
+
+    .text_ban h2 {
+        font-size: 30px; 
+    }
+
+    .text_ban p {
+        font-size: 18px; 
+        margin-bottom: 15px; 
+    }
+
+    .carte1, .carte2, .carte3 {
+        width: 100%;
+    }
+
+    .a_propos {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .a_propos img {
+        width: 100%; 
+    }
+
+    .text_propos h2 {
+        font-size: 30px; 
+    }
+
+    .text_propos p {
+        font-size: 18px; 
+        margin-bottom: 15px; 
+    }
+
+    .carte_eve {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .infos_lateral {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

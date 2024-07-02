@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Association;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
 
@@ -13,15 +12,8 @@ class EvenementController extends Controller
      */
     public function index()
     {
-
-        // Récupérer les événements
         $evenements = Evenement::all();
         return view('evenements.index', compact('evenements'));
-
-        $evenements= Evenement::all();
-        
-        return view('landingpage', compact('evenements'));
-
     }
 
     /**
@@ -31,11 +23,13 @@ class EvenementController extends Controller
     {
         return view('evenements.create_evenement');
     }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // Validation des données du formulaire
         $request->validate([
             'nom' => 'required|string|max:255',
             'date' => 'required|date',
@@ -47,43 +41,40 @@ class EvenementController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Initialisation de la variable image
+        // Traitement de l'image
         $image = null;
-
-        // Vérification si un fichier image a été uploadé
         if ($request->hasFile('image')) {
-            // Stockage de l'image
-            $chemin_image = $request->file('image')->store('public/images');
-            // Récupération du nom du fichier de l'image
-            $image = basename($chemin_image);
+            $imagePath = $request->file('image')->store('public/images');
+            $image = basename($imagePath);
         }
 
-        // Création de l'événement avec les données validées et le chemin de l'image
-        $data = $request->all();
-        $data['image'] = $image;
+        // Création de l'événement dans la base de données
+        Evenement::create([
+            'nom' => $request->nom,
+            'date' => $request->date,
+            'lieu' => $request->lieu,
+            'description' => $request->description,
+            'nombre_place' => $request->nombre_place,
+            'date_limite_inscription' => $request->date_limite_inscription,
+            'association_id' => $request->association_id,
+            'image' => $image,
+        ]);
 
-        Evenement::create($data); // Enregistrement dans la base de données
-
-        return redirect()->back()->with('success', 'Événement ajouté avec succès');
+        return redirect()->route('evenements.index')->with('success', 'Événement ajouté avec succès');
     }
-
-       
-    
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-       $evenements= Evenement::find($id); 
-        
-        return view('show', compact('evenements'));
+        $evenement = Evenement::findOrFail($id); 
+        return view('portails.show', ['evenement' => $evenement]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-
     public function edit(Evenement $evenement)
     {
         return view('evenements.edit', compact('evenement'));
@@ -94,6 +85,7 @@ class EvenementController extends Controller
      */
     public function update(Request $request, Evenement $evenement)
     {
+        // Validation des données du formulaire
         $request->validate([
             'nom' => 'required|string|max:255',
             'lieu' => 'required|string|max:255',
@@ -104,14 +96,20 @@ class EvenementController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
-
+        // Traitement de l'image
         if ($request->hasFile('image')) {
-            $chemin_image = $request->file('image')->store('public/images');
-            $data['image'] = basename($chemin_image);
+            $imagePath = $request->file('image')->store('public/images');
+            $evenement->image = basename($imagePath);
         }
 
-        $evenement->update($data);
+        // Mise à jour de l'événement
+        $evenement->nom = $request->nom;
+        $evenement->lieu = $request->lieu;
+        $evenement->nombre_place = $request->nombre_place;
+        $evenement->date = $request->date;
+        $evenement->date_limite_inscription = $request->date_limite_inscription;
+        $evenement->description = $request->description;
+        $evenement->save();
 
         return redirect()->route('evenements.index')->with('success', 'Événement modifié avec succès');
     }
@@ -122,10 +120,16 @@ class EvenementController extends Controller
     public function destroy(Evenement $evenement)
     {
         $evenement->delete();
-
         return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès');
-    } 
+    }
 
-   
-
+    /**
+     * Affiche la landing page.
+     */
+    public function landingPage()
+    {
+        $evenements = Evenement::all(); // Récupère tous les événements
+        return view('portails.landing', compact('evenements')); // Transmet les événements à la vue
+    }
+    
 }

@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AssociationController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
-
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\ReservationController;
 
 
 
@@ -37,3 +36,7 @@ Route::resource('dashboard-association', AssociationController::class);
 
 
 Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
+
+Route::get('/landing', [EvenementController::class, 'landingPage'])->name('landing');
+Route::get('/evenements/{evenement}/details', [EvenementController::class, 'showDetails'])->name('evenements.details');
+Route::resource('reservations', ReservationController::class);
