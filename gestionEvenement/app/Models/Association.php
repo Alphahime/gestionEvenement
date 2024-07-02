@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Association extends Model
+class Association extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
-    protected $fillable=[
-        
+    protected $fillable = [
         'nom',
         'description',
         'adresse',
@@ -21,11 +21,14 @@ class Association extends Model
         'email',
         'password',
         'ninea',
-    
     ];
 
-    public function evenements(){
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
+    public function evenements()
+    {
         return $this->hasMany(Evenement::class);
     }
 }

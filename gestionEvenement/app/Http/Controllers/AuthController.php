@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAuthRequest;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AuthController extends Controller
 {
@@ -21,25 +25,38 @@ class AuthController extends Controller
      */
     public function create()
     {
-        return view('users.auth');
+        return view('associations.auth');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateAuthRequest $request)
-
+    public function store(Request $request)
     {
-      
-        if(auth()->attempt($request->only('email','password'))) {
-            // Authentification réussie, rediriger vers une autre route
-            return redirect()->route('association.create')->with('success', 'Connexion réussie.');
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('association')->attempt($credentials)) {
+            return redirect('association'); // Redirigez vers le tableau de bord de l'association
         } else {
-            // Échec de l'authentification, rediriger vers la route de connexion avec une erreur
-            return redirect()->route('users.create')->withErrors(['password' => 'Adresse e-mail ou mot de passe incorrect.']);
+            return redirect()->route('connexion')->withErrors('Vous n\'êtes pas autorisé à vous connecter');
         }
     }
 
+//     public function store(CreateAuthRequest $request)
+// {
+//     if (Auth::attempt($request->only('email', 'password'))) {
+//         if (Auth::user()->hasRole('admin')) {
+//             return redirect()->route('admin.index')->with('success', 'Connexion réussie.');
+//         } elseif (Auth::user()->hasRole('association')) {
+//             return redirect()->route('association.index')->with('success', 'Connexion réussie.');
+//         } else {
+//             return redirect()->route('association.create')->with('success', 'Connexion réussie.');
+//         }
+//     } else {
+//         // Échec de l'authentification, rediriger vers le formulaire de connexion avec une erreur
+//         return redirect()->route('authuser.create')->withErrors(['password' => 'Adresse e-mail ou mot de passe incorrect.']);
+//     }
+// }
     /**
      * Display the specified resource.
      */

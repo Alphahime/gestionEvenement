@@ -12,11 +12,8 @@
     <h1> Formulaire de Connexion</h1>
     <h3 style="text-align: center">se connecter avec :</h3>
     
-    <form action="{{ url('authuser') }}" method="post">
+    <form action="{{ url('verification_connexion') }}" method="post">
         @csrf
-       
-    
-
     <div class="reseau">
         <div class="input-container">
             <i class="fab fa-facebook icon"></i>

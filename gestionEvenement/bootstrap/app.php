@@ -11,7 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'role' =>\spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' =>\spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' =>\spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+
+
+
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

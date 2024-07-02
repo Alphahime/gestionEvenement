@@ -42,13 +42,13 @@
 
     @foreach($users as $user)
           <tr>
-            <th scope="row">{{ $user->prenom }}</th>
+            <th scope="row">{{ $user->name }}</th>
             <td>{{ $user->nom}}</td>
             <td>{{ $user->email}}</td>
             <td>{{ $user->adresse}}</td>
             <td>{{ $user->telephone}}</td>
 
-            <td>
+           <td>
                 <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
                   <i class="fa-solid fa-xmark" style="color: #c72323;"></i>                </a>
             
@@ -56,8 +56,8 @@
                     @csrf
                     @method('DELETE')
                 </form>
-            </td>
-            
+            </td> 
+             
             
           </tr>
           @endforeach

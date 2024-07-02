@@ -16,6 +16,7 @@
             background-color: #08143F;
             border-radius: 1rem;
             width: 350px;
+            overflow-y: scroll
         }
 
         .sidebar a {
@@ -73,7 +74,7 @@
                 </li>
 
                 <li class="mb-4">
-                    <a href="#" class="block py-2 px-4 w-full hover:bg-yellow-500 hover:text-white">
+                    <a href="{{ route('role.create') }}" class="block py-2 px-4 w-full hover:bg-yellow-500 hover:text-white">
                         <i class="fas fa-list-alt mr-2 icon"></i> Ajouter un role
                     </a>
                 </li>
