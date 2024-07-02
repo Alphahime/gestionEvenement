@@ -6,9 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <title>Ajouter Evenement</title>
-
 </head>
-<body  class="container">
+<body class="container">
     <div class="container mt-5">
         <h1 id="h1">Ajouter un événement</h1>
 
@@ -45,7 +44,6 @@
             </div>
 
             <div class="deuxieme">
-
                 <div class="mb-3">
                     <label for="nombre_de_place" class="form-label">Nombre de places</label>
                     <input type="number" class="form-control" name="nombre_place" id="nombre">
@@ -55,7 +53,6 @@
                     <label for="date" class="form-label">Date</label>
                     <input type="date" class="form-control" name="date" id="date">
                 </div>
-
             </div>
 
             <div class="mb-3">
@@ -64,7 +61,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control" name="image" id="image" ">
+                <input type="file" class="form-control" name="image" id="image" >
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>

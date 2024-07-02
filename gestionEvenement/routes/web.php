@@ -8,6 +8,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\EvenementController;
+
 
 
 Route::get('/', function () {
@@ -35,3 +37,17 @@ Route::resource('users',UserController::class);
 Route::get('connexion',[AuthController::class,'create']);
 Route::post('verification_connexion',[AuthController::class,'store']);
 Route::resource('role',RoleController::class);
+// route des admins
+Route::resource('admin', AdminController::class);
+
+// Route vers page index.blade.php  
+Route::resource('evenements', EvenementController::class);
+//
+Route::resource('evenements.store', EvenementController::class);
+// route vers le dashboard layouts
+Route::resource('dashboard-association', AssociationController::class);
+
+
+Route::get('evenements/{evenement}/edit', [EvenementController::class, 'edit'])->name('evenements.edit');
+Route::put('evenements/{evenement}', [EvenementController::class, 'update'])->name('evenements.update');
+Route::delete('evenements/{evenement}', [EvenementController::class, 'destroy'])->name('evenements.destroy');
