@@ -19,8 +19,8 @@ class EvenementController extends Controller
         return view('evenements.index', compact('evenements'));
 
         $evenements= Evenement::all();
-        
-        return view('landingpage', compact('evenements'));
+        return view('landingpage', compact('liste_evenements'));
+
 
     }
 
@@ -125,6 +125,24 @@ class EvenementController extends Controller
 
         return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès');
     } 
+
+
+// gestion des evenements du dashbord
+    public function afficher(){
+        // affichages des evenements dans le dashbord de l'admin
+        $evenements= Evenement::all();
+        return view('admins.liste_evenements', compact('evenements'));
+
+    }
+
+    // gestion de la suppression
+    public function suppression($id){
+        $evenement=Evenement::find($id);
+        $evenement->delete();
+        return redirect()->back();
+
+
+    }
 
    
 

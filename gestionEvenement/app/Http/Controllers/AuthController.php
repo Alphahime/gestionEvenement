@@ -36,27 +36,13 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('association')->attempt($credentials)) {
-            return redirect('association'); // Redirigez vers le tableau de bord de l'association
+            return redirect('evenements'); // Redirigez vers le tableau de bord de l'association
         } else {
-            return redirect()->route('connexion')->withErrors('Vous n\'êtes pas autorisé à vous connecter');
+            return redirect('connexion')->withErrors('Vous n\'êtes pas autorisé à vous connecter');
         }
     }
 
-//     public function store(CreateAuthRequest $request)
-// {
-//     if (Auth::attempt($request->only('email', 'password'))) {
-//         if (Auth::user()->hasRole('admin')) {
-//             return redirect()->route('admin.index')->with('success', 'Connexion réussie.');
-//         } elseif (Auth::user()->hasRole('association')) {
-//             return redirect()->route('association.index')->with('success', 'Connexion réussie.');
-//         } else {
-//             return redirect()->route('association.create')->with('success', 'Connexion réussie.');
-//         }
-//     } else {
-//         // Échec de l'authentification, rediriger vers le formulaire de connexion avec une erreur
-//         return redirect()->route('authuser.create')->withErrors(['password' => 'Adresse e-mail ou mot de passe incorrect.']);
-//     }
-// }
+
     /**
      * Display the specified resource.
      */
@@ -88,4 +74,14 @@ class AuthController extends Controller
     {
         // 
     }
+
+    // deconnexion
+
+    
+
+    public function deconnexion()
+{
+    Auth::guard('association')->logout(); // Déconnexion de l'authentification de l'association
+    return redirect('connexion')->with('success', 'Vous avez été déconnecté avec succès.');
+}
 }

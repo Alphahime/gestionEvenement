@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
-
 use App\Http\Requests\CreateAssociationRequest;
+
+
 use App\Models\Association;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AssociationController extends Controller
@@ -28,8 +29,15 @@ class AssociationController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('associations.inscription_assos');
+
+    {$association = Auth::user();
+        if (!$association->active) { 
+            return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
+        }
+        else {
+            return view('associations.inscription_assos');
+            }
+        
     }
 
     /**
@@ -80,5 +88,23 @@ class AssociationController extends Controller
         $association=Association::find($id);
         $association->delete();
         return redirect('association');
+    }
+
+    // route pour deasctiviter le compte de l'association
+
+    public function deactivation($id){
+        $association=Association::find($id);
+        $association->active=false;
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le compte de l\'association a été désactivé avec succès.');
+    }
+
+    public function activation($id){
+        $association=Association::find($id);
+        $association->active=true;
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le compte de l\'association a été active  avec succès.');
     }
 }

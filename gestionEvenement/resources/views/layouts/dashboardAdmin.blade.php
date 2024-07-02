@@ -49,7 +49,9 @@
     <div class="flex h-screen">
         <div class="sidebar bg-gray-800 text-gray-100 py-4 px-6">
             <div class="flex items-center justify-center">
-                <img src="{{ asset('storage/logoenventsvalide-removebg-preview.png') }}" alt="Logo de l'association" class="h-12">
+                <div class="flex items-center justify-center">
+                    <img src="{{ asset('imgs/logo.png') }}" alt="Logo de l'association" class="h-12">
+                </div>            
             </div>
             <ul class="mt-6">
                 <li class="mb-4">
@@ -63,7 +65,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="block py-2 px-4 w-full hover:bg-yellow-500 hover:text-white">
+                    <a href="{{ url('evenements_admin') }}" class="block py-2 px-4 w-full hover:bg-yellow-500 hover:text-white">
                         <i class="fas fa-plus-circle mr-2 icon"></i> Les evenements
                     </a>
                 </li>

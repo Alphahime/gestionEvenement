@@ -53,7 +53,7 @@
 
 </form>
 <div class="question"><hr class="costum_hr">
-   <p>vous n'avez pas de compte? <a href="">s'inscrire</a></p> 
+   <p>vous n'avez pas de compte? <a href="{{ route('association.create') }}">s'inscrire</a></p> 
 </div>
 
     
