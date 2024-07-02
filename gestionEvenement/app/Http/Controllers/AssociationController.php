@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 use App\Http\Requests\CreateAssociationRequest;
@@ -19,12 +20,8 @@ class AssociationController extends Controller
      */
     public function index()
     {
-
         $associations=Association::all();
         return view('admins.liste_association',compact('associations'));
-
-        
-
     }
 
     /**

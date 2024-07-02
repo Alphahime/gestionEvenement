@@ -74,17 +74,17 @@
         <div class="vertical">
             <label for="role">Rôle :</label>
             <select name="role_id" id="role">
-                {{-- @foreach($role as $role) --}}
-                    {{-- <option value="{{ $role->id }}" {{ $role->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option> --}}
-                {{-- @endforeach --}}
+                @foreach($role as $r)
+                    <option value="{{ $r->id }}" {{ $r->id == $role->id ? 'selected' : '' }}>{{ $r->name }}</option>
+                @endforeach
             </select>
         </div>
     
         <div class="vertical">
             <label for="permission">Permission :</label>
             <select name="permission_id" id="permission">
-                @foreach($permissions as $permission)
-                    <option value="{{ $permission->id }}" {{ $permission->id == $permission->id ? 'selected' : '' }}>{{ $permission->name }}</option>
+                @foreach($permissions as $p)
+                    <option value="{{ $p->id }}" {{ $p->id == $permission->id ? 'selected' : '' }}>{{ $p->name }}</option>
                 @endforeach
             </select>
         </div>
