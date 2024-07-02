@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\CreateAssociationRequest;
 use App\Models\Association;
+
+
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -15,8 +19,12 @@ class AssociationController extends Controller
      */
     public function index()
     {
+
         $associations=Association::all();
         return view('admins.liste_association',compact('associations'));
+
+        
+
     }
 
     /**
