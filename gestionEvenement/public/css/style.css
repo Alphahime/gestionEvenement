@@ -48,6 +48,18 @@
     display: flex;
     gap: 4em;
 }
+/* page mes reservations*/
+.card{
+    border-color: #FFC441;
+    width: 600px;
+    margin: auto;
+   
+}
+
+#title{
+    text-align: center;
+}
+
 
 @media screen and (max-width:480px){
 
@@ -117,7 +129,10 @@
     .sidebar.open {
         left: 0;
     }
-}
+
+    
+
+    
 
 @media screen and (max-width: 480px) {
     #h1 {
@@ -157,4 +172,5 @@ body, label {
     width: 100%;
     height: auto;
     position: relative;
+}
 }

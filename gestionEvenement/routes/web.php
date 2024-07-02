@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\EvenementController;
-
-
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,3 +36,7 @@ Route::resource('dashboard-association', AssociationController::class);
 
 
 Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
+
+/* afficher reservations */
+
+Route::resource('reservations', ReservationController::class);

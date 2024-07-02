@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Evenement extends Model
 {
@@ -27,6 +28,11 @@ class Evenement extends Model
 
     public function users(){
 
-        return $this->belongsToMany(User::class,'reservations');
+        return $this->belongsToMany(User::class, 'reservations');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'evenements_id');
     }
 }
