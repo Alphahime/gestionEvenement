@@ -173,4 +173,11 @@ body, label {
     height: auto;
     position: relative;
 }
+
+.card{
+    border-color: #FFC441;
+    width: 300px;
+    margin: auto;
+   
+}
 }
