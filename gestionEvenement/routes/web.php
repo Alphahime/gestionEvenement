@@ -7,7 +7,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvenementController;
+
 use App\Http\Controllers\AssociationController;
+
 use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
@@ -33,8 +35,16 @@ Route::resource('evenements', EvenementController::class);
 Route::get('/landing', [EvenementController::class, 'landingPage'])->name('landing');
 
 
+
 Route::get('/evenements/{evenement}/details', [EvenementController::class, 'showDetails'])->name('evenements.details');
 
 
 Route::resource('reservations', ReservationController::class);
 Route::get('/reservations/confirmed', [ReservationController::class, 'confirmed'])->name('reservations.confirmed');
+
+Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
+
+/* afficher reservations */
+
+Route::resource('reservations', ReservationController::class);
+

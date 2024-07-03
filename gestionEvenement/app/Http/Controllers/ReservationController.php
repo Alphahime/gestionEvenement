@@ -12,7 +12,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations= Reservation::with('evenement')->get();
+        return view('reservations.affiche_reservation', compact('reservations'));
     }
 
     /**

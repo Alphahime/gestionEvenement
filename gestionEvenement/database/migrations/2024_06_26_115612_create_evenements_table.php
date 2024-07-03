@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('date_limite_inscription');
             // $table->string('image')->nullable();
             $table->foreignId('association_id')->constrained()->onDelete('cascade');
+         
             $table->timestamps();
         });
     }
