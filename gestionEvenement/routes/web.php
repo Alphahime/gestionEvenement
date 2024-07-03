@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AssociationController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EvenementController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EvenementController;
 use App\Models\Evenement;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\ReservationController;
+
 
 
 Route::get('/', function () {
@@ -62,3 +64,8 @@ Route::post('activation/{id}', [EvenementController::class, 'activation'])->name
 
 // Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
 // Route::resource('evenements', EvenementController::class);
+Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
+
+Route::get('/landing', [EvenementController::class, 'landingPage'])->name('landing');
+Route::get('/evenements/{evenement}/details', [EvenementController::class, 'showDetails'])->name('evenements.details');
+Route::resource('reservations', ReservationController::class);

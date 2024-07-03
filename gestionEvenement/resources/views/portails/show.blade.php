@@ -34,7 +34,7 @@
                 <h2>{{ $evenement->nom }}</h2>
                 <h3>Description Événement</h3>
                 <p>{{ $evenement->description }}</p>
-                <a href="{{ route('reservations.create', ['evenement' => $evenement->id]) }}" id="bouton_reserver">Réserver ma place</a>
+                <a href="{{ route('login') }}" id="bouton_reserver">Réserver ma place</a>
             </div>
         </div>
     </div>

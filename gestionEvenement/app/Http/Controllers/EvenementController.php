@@ -44,22 +44,20 @@ class EvenementController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    
     {
-        $association = Auth::guard('association')->user(); // Récupérer l'utilisateur authentifié avec la garde 'association'
-
-if (!$association->active) { 
-    return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
-} else {
-    // Récupérer l'ID de l'association
-    $associationId = $association->id;
-
-    // Vous pouvez maintenant utiliser $associationId pour l'utiliser dans la création d'événement ou pour toute autre opération
-    return view('evenements.create_evenement', compact('associationId'));
-}
-
-        
+        $association = Auth::guard('association')->user();
+    
+        if (!$association->active) {
+            return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
+        }
+    
+        return view('evenements.create_evenement', compact('association'));
     }
+
+    
+    
+
+    
 
     /**
      * Store a newly created resource in storage.

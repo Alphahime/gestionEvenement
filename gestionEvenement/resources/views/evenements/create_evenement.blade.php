@@ -25,7 +25,8 @@
 
         <form action="{{ route('evenements.store') }}" method="post" enctype="multipart/form-data" class="form">
             @csrf
-            <div class="premier">
+            <input type="hidden" name="association_id" value="4">       
+                     <div class="premier">
                 <div class="mb-3">
                     <label for="nom" class="form-label">Nom</label>
                     <input type="text" class="form-control" name="nom" id="nom" >

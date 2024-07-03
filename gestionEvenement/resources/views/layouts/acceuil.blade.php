@@ -23,7 +23,7 @@
     </nav>
     </header>
 
-
+@yield('contenu')
     <footer>
         <div>
             <div>

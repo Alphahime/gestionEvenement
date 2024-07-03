@@ -42,6 +42,11 @@
           </tr>
         </thead>
         <tbody>
+          @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                {{ $message }}
+            </div>
+        @endif
 
     @foreach($associations as $association)
           <tr>
@@ -64,7 +69,7 @@
                 </form>
                   {{-- desactiver une assocation --}}
 
-                  <form action="{{ route('activation', $association->id) }}" method="POST">
+                  <form action="{{ route('desactivation', $association->id) }}" method="POST">
                     @csrf
                 <button type="submit" style="border: none; background-color: transparent;"> 
                   <i class="fa-solid fa-ban fa-xs" style="color: #d61f1f;"></i>           
