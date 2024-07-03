@@ -69,10 +69,9 @@
                 </li>
                 <li class="mb-4">
                     <a href="{{ route('reservations.confirmed') }}" class="block py-2 px-4 w-full hover:bg-yellow-500 hover:text-white">
-                        <i class="fas fa-list-alt mr-2 icon"></i> Voir les réservations
+                        <i class="fas fa-list-alt mr-2 icon"></i> Voir les réservations 
                     </a>
                 </li>
-                
             </ul>
             
             <div class="logout">

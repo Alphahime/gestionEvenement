@@ -47,4 +47,4 @@ Route::resource('evenements', EvenementController::class)->only(['edit', 'update
 /* afficher reservations */
 
 Route::resource('reservations', ReservationController::class);
-
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
