@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <script src="acceuil.js" defer></script>
     <title>Document</title>
     
 </head>
@@ -14,6 +15,7 @@
     <header class="topbar">
         <img src="{{ asset('imgs/logo.png')}}" alt="Logo senevent's" id="logo">
     <nav class="nav">
+        <a href="#">
         <ul class="navbar">
             <div>
                 <li>Événéments</li>
@@ -29,13 +31,17 @@
             </div>
             
         </ul>
+        </a>
         <div>
             <button id="connection">Connection</button>
         </div>
-       
-    </nav>
+
+        <img src="{{ asset('imgs/menu_burger.png')}}" alt="menu burger" class="menu_burger">
+
+     </nav>
     </header>
-    @yields('body')
+    
+    @yield('content')
     
 
     <footer class="footer">
@@ -84,6 +90,16 @@
     </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+    const menuburger = document.querySelector(".menu_burger")
+        const navbar = document.querySelector(".navbar")
+ 
+        menuburger.addEventListener('click',()=>{
+        navbar.classList.toggle('mobile-menu')
+        })
+</script>
 </body>
 </html>

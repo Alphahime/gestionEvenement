@@ -78,6 +78,7 @@
     
 }
 
+
 #connection{
     background-color: #FFC441;
     font-size: 20px;
@@ -86,6 +87,10 @@
     margin-top: 10px;
 }
 
+.menu_burger{
+    height: 75px;
+    display: none;
+}
 /* footer*/
 
 .footer{
@@ -163,6 +168,39 @@
 }
 @media screen and (max-width:480px){
 /* footer*/
+
+.menu_burger{
+    display: block;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: absolute;
+    background-color:#1D275F;
+    padding-top: 20px;
+    
+    width: 50%;
+    height: 25%;
+    
+    color: white;
+    font-weight: bolder;
+    margin-left: -100%;
+    transition: all 0.5s ease;
+    
+}
+
+
+
+.mobile-menu{
+    margin-left: 0;
+
+}
+
+
+
+
 
 .footer{
     text-align: center;
