@@ -43,5 +43,6 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+        <p>vous n'avez pas de compte? <a href="register">s'inscrire</a></p>
     </form>
 </x-guest-layout>

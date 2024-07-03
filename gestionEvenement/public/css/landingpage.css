@@ -7,6 +7,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .container {
@@ -21,13 +22,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 600px;
+    height: 700px;
     width: 100%;
-    padding-left: 13rem;
+    padding-left: 17rem;
+  
 }
 
 .banniere img {
     max-width: 100%; 
+    margin-right: 90px;
+    margin-left: -85px;
+    height: 650px;
+    margin-top: -127px;
 }
 
 .text_ban {
@@ -36,9 +42,12 @@ body {
 }
 
 .text_ban h2 {
-    font-size: 45px;
-    font-weight: bold;
-    line-height: 1.5;
+
+font-family: Leckerli One;
+font-size: 45px;
+font-weight: 400;
+line-height: 60.53px;
+text-align: left;
    
 }
 
@@ -68,6 +77,7 @@ body {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
+    margin-top: -40px;
 }
 
 .carte1, .carte2, .carte3 {
@@ -102,20 +112,23 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-left: 15rem;
+    padding-left: 20rem;
     padding-right: 3rem;
     width: 90%;
     height: 600px;
 }
 
 .a_propos img {
-    max-width: 100%; 
-    height: auto;
+    max-width: 700px; 
+    height: 400px;
+    margin-left: -150px;
+   margin-top: 50px;
 }
 
 .text_propos {
     flex: 1;
     padding: 0 20px;
+    margin-left: 80px;
 }
 
 .text_propos h2 {
@@ -136,7 +149,7 @@ body {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 18px;
     border-radius: 2rem;
 }
 
@@ -236,6 +249,9 @@ body {
         width: 100%;
         margin-bottom: 20px;
     }
+    #bouton_inscription{
+        margin-bottom: 40px;
+    }
 
     .a_propos {
         flex-direction: column;
@@ -253,17 +269,22 @@ body {
 
 /* Pour les téléphones */
 @media screen and (max-width: 768px) {
+    body{
+        overflow-x: hidden;
+    }
     .banniere {
         padding-left: 1rem;
         padding-right: 1rem;
     }
 
     .banniere img {
-        width: 100%; 
+        width: 340px; 
+        margin-left: 30px;
     }
 
     .text_ban h2 {
-        font-size: 30px; 
+        font-size: 25px; 
+        text-align: center;
     }
 
     .text_ban p {
@@ -281,7 +302,8 @@ body {
     }
 
     .a_propos img {
-        width: 100%; 
+        width: 340px; 
+        margin-left: 30px;
     }
 
     .text_propos h2 {
@@ -296,11 +318,31 @@ body {
     .carte_eve {
         width: 100%;
         margin-right: 0;
+        /* flex-direction: column;
+        align-items: center;
+        text-align: center; */
+        flex-wrap: wrap;
+        display: block;
+        
     }
 
     .infos_lateral {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    /* Media query for mobile devices */
+    @media (max-width: 480px) {
+        #liste_evenements {
+            flex-wrap: wrap; /* Wrap items to new line */
+            justify-content: center; /* Center items */
+        }
+    
+        .carte_eve {
+            width: 100%; /* Full width on mobile */
+            margin: 10px 0; /* Adjust margin for mobile */
+        }
+    }
+    
 }
 

@@ -21,8 +21,10 @@ class Association extends Authenticatable
         'email',
         'password',
         'ninea',
+        'active',
     ];
 
+    
     protected $hidden = [
         'password', 'remember_token',
     ];

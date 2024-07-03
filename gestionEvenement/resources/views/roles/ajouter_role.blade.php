@@ -43,14 +43,14 @@
    }
 
    form{
-    background-color: aliceblue;
+   
     height: 350px;
     margin-top: 100px;
     width: 1100px;
     margin-left: 73px;
    
     
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1) 
+  
    }
 
    
@@ -67,31 +67,29 @@
     </div>
     @endif
     
-    <form action="#" method="POST">
+    <form action="{{ route('role.store') }}" method="POST">
         @csrf
-        @method('PUT') <!-- Utilisation de la méthode PUT pour la mise à jour -->
     
         <div class="vertical">
             <label for="role">Rôle :</label>
-            <select name="role_id" id="role">
-                {{-- @foreach($role as $role) --}}
-                    {{-- <option value="{{ $role->id }}" {{ $role->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option> --}}
-                {{-- @endforeach --}}
+            <select name="role" id="role">
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
             </select>
         </div>
     
         <div class="vertical">
             <label for="permission">Permission :</label>
-            <select name="permission_id" id="permission">
+            <select name="permission" id="permission">
                 @foreach($permissions as $permission)
-                    <option value="{{ $permission->id }}" {{ $permission->id == $permission->id ? 'selected' : '' }}>{{ $permission->name }}</option>
+                    <option value="{{ $permission->id }}">{{ $permission->name }}</option>
                 @endforeach
             </select>
         </div>
-    
+   
         <div class="composant_bouton">
-            <input class="bouton" type="submit" value="Modifier">
-        </div>
+            <input class="bouton" type="submit" value="Assigner">
+        </div> 
     </form>
-    
     @endsection

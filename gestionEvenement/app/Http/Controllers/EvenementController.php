@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Association;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EvenementController extends Controller
 {
@@ -15,6 +18,27 @@ class EvenementController extends Controller
         $evenements = Evenement::all();
         return view('evenements.index', compact('evenements'));
         
+
+        $evenements= Evenement::all();
+        return view('landingpage', compact('liste_evenements'));
+
+
+    }
+
+    public function deactivation($id){
+        $association=Association::find($id);
+        $association->active=false;
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le compte de l\'association a été désactivé avec succès.');
+    }
+
+    public function activation($id){
+        $association=Association::find($id);
+        $association->active=true;
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le compte de l\'association a été active  avec succès.');
     }
 
     /**
@@ -22,8 +46,19 @@ class EvenementController extends Controller
      */
     public function create()
     {
-        return view('evenements.create_evenement');
+        $association = Auth::guard('association')->user();
+    
+        if (!$association->active) {
+            return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
+        }
+    
+        return view('evenements.create_evenement', compact('association'));
     }
+
+    
+    
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -38,7 +73,7 @@ class EvenementController extends Controller
             'description' => 'required|string',
             'nombre_place' => 'required|integer',
             'date_limite_inscription' => 'required|date',
-            'association_id' => 'required|integer|exists:associations,id',
+            // 'association_id' => 'required|integer|exists:associations,id',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -122,7 +157,27 @@ class EvenementController extends Controller
     {
         $evenement->delete();
         return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès');
+    } 
+
+
+// gestion des evenements du dashbord
+    public function afficher(){
+        // affichages des evenements dans le dashbord de l'admin
+        $evenements= Evenement::all();
+        return view('admins.liste_evenements', compact('evenements'));
+
     }
+
+    // gestion de la suppression
+    public function suppression($id){
+        $evenement=Evenement::find($id);
+        $evenement->delete();
+        return redirect()->back();
+
+
+    }
+
+   
 
     /**
      * Affiche la landing page.

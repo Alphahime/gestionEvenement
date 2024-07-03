@@ -10,12 +10,13 @@
 <body>
     <div class="banniere">
         <div>
-            <img src="{{ asset('imgs/a_propos.png') }}" alt="banniere" id="img_ban">
+            <img src="{{ asset('imgs/imm.png') }}" alt="banniere" id="img_ban">
         </div>
         <div class="text_ban">
             <h2>Découvrez et participez aux <br>événements incontournables près <br> de chez vous !</h2>
             <p>Des événements inspirants aux fêtes inoubliables, tout <br>est à portée de main ! Elle permet aux associations de <br> publier facilement leurs événements et aux utilisateurs de <br>réserver rapidement.</p>
-            <button id="bouton_inscription">Inscription</button>
+            <a href="register"><button id="bouton_inscription">Inscription</button> </a>
+           
         </div>
     </div>
 
@@ -70,7 +71,8 @@
             des événements sportifs, culturels, <br> religieux ou sociaux, notre
             mission est de vous offrir une <br>expérience enrichissante et
             sans stress.</p>
-            <button id="creer_evenement">Créer un événement</button>
+            <a href="connexion"><button id="creer_evenement">Créer un événement</button> </a>
+           
         </div>
     </div>
 
