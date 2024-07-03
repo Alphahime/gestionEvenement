@@ -252,3 +252,43 @@ body, label {
 #bouton_reserver:hover {
     background-color: #e0a800;
 }
+.popup {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        .popup-content p {
+            margin: 20px 0;
+        }
+        .popup-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .popup-button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .popup-button.confirm {
+            background-color: #FFC441;
+            color: #08143F;
+        }
+        .popup-button.cancel {
+            background-color: #e0a800;
+            color: #08143F;
+        }

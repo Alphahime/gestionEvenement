@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -27,9 +28,19 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'prenom' => 'required|string|max:255',
+            'nom' => 'required|string|max:255',
+            'telephone' => 'required|string|max:20',
+            'fonction' => 'required|string|max:255',
+            'users_id' => 'required|integer',
+            'evenement_id' => 'required|integer',
+        ]);
 
+        Reservation::create($request->all());
+
+        return redirect()->back()->with('success', 'Réservation effectuée avec succès');
+    }
     /**
      * Display the specified resource.
      */
@@ -60,5 +71,13 @@ class ReservationController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function confirmed()
+    {
+        // Récupérer toutes les réservations confirmées
+        $reservations = Reservation::where('status', 'confirmed')->get();
+
+        // Retourner la vue avec les réservations confirmées
+        return view('reservations.confirmed', compact('reservations'));
     }
 }

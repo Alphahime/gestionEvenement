@@ -10,33 +10,31 @@ use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\ReservationController;
 
-
-
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-// route pour afficher le formulaire d'inscription pour le user simple
 Route::resource('users', UserController::class);
 
-// route pour la gestion de l'authentification
+
 Route::resource('authuser', AuthController::class);
-// route pour les associations
-Route::resource('association',AssociationController::class);
-// route des admins
+
+
+Route::resource('association', AssociationController::class);
+
+
 Route::resource('admin', AdminController::class);
 
-// Route vers page index.blade.php  
+
 Route::resource('evenements', EvenementController::class);
-Route::resource('evenements.store', EvenementController::class);
 
-
-Route::resource('dashboard-association', AssociationController::class);
-
-
-Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
 
 Route::get('/landing', [EvenementController::class, 'landingPage'])->name('landing');
+
+
 Route::get('/evenements/{evenement}/details', [EvenementController::class, 'showDetails'])->name('evenements.details');
+
+
 Route::resource('reservations', ReservationController::class);
+Route::get('/reservations/confirmed', [ReservationController::class, 'confirmed'])->name('reservations.confirmed');
