@@ -49,3 +49,31 @@
 </body>
 </html>
 
+
+{{-- <div id="popup" class="popup">
+    <div class="popup-content">
+        <p>Êtes-vous sûr de vouloir réserver votre place ?</p>
+        <div class="popup-buttons">
+            <button class="popup-button confirm" onclick="closePopup(true)">Confirmer</button>
+            <button class="popup-button cancel" onclick="closePopup(false)">Annuler</button>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmReservation() { --}}
+        {{-- // Show the custom popup
+        document.getElementById('popup').style.display = 'flex';
+        return false; // Prevent the default link behavior
+    }
+
+    function closePopup(confirm) {
+        // Hide the custom popup
+        document.getElementById('popup').style.display = 'none';
+
+        if (confirm) {
+            // If the user confirmed, submit the reservation
+            window.location.href = document.getElementById('bouton_reserver').href;
+        }
+    } --}}
+</script>
+

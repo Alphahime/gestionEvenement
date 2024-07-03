@@ -11,9 +11,9 @@
     background-color: #f9f9f9;
     padding: 1rem;
     border-radius: 0.5rem;
-    width: 50%;
+    width: 70%;
     position: absolute;
-    margin-left: 30rem;
+    margin-left: 25rem;
     margin-top: 16.5rem;
 }
 
@@ -21,6 +21,7 @@
     flex: 1;
     padding: 1rem;
     margin: 0 0.5rem;
+    height: 150px;
     background-color: white;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
@@ -30,11 +31,14 @@
     margin: 0;
     font-size: 1.25rem;
     font-weight: bold;
+    /* margin-top: 30px; */
 }
 
 .stat-item span {
     font-size: 1rem;
     color: #6b7280;
+    margin-top: 150px;
+
 }
 
 .add-event-btn {
@@ -69,9 +73,9 @@
     align-items: center;
     justify-content: space-between;
     height: 160px;
-    width: 1064px;
+    width: 1165px;
     position: absolute;
-    margin-left: 30rem;
+    margin-left: 25rem;
     border-radius: 14px;
     margin-top: 3rem;
 }
@@ -88,15 +92,18 @@
 }
 
 .big-container {
-    width: 60%;
+    width: 73%;
     height: auto;
     display: flex;
     justify-content: center;
-    margin-left: 30rem;
+    margin-left: 24rem;
     position: absolute;
-    margin-top: 25rem;
+    margin-top: 30rem;
     
 }
+
+
+
 
 .container-custom {
     width: 100%;

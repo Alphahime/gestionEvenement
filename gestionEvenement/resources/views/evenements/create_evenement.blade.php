@@ -8,7 +8,8 @@
     <title>Ajouter Evenement</title>
 </head>
 <body class="container"> 
-
+@extends('layouts.dashboardAssociation')
+@section( 'content')
 
     <div class="container mt-5">
         <h1>Formulaire de Création d'Événement</h1>
