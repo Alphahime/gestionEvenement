@@ -7,11 +7,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvenementController;
+
 use App\Models\Evenement;
 use App\Http\Controllers\AssociationController;
+
 use App\Http\Controllers\ReservationController;
-
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,16 +28,22 @@ Route::middleware('auth')->group(function () {
 });
 require __DIR__.'/auth.php';
 
-// route pour afficher le formulaire d'inscription pour le user simple
 Route::resource('users', UserController::class);
 
-// route pour la gestion de l'authentification
+
 Route::resource('authuser', AuthController::class);
-// route pour les associations
-Route::resource('association',AssociationController::class);
-// route des admins
+
+
+Route::resource('association', AssociationController::class);
+
+
 Route::resource('admin', AdminController::class);
 
+
+Route::resource('evenements', EvenementController::class);
+
+
+Route::get('/landing', [EvenementController::class, 'landingPage'])->name('landing');
 // routes pour authentification association
 Route::get('connexion',[AuthController::class,'create']);
 Route::post('verification_connexion',[AuthController::class,'store']);
@@ -56,6 +62,13 @@ Route::resource('dashboard-association', AssociationController::class);
 Route::get('evenements_admin',[EvenementController::class,'afficher']);
 Route::get('supprimer_evenement/{id}',[EvenementController::class,'suppression']);
 
+
+Route::get('/evenements/{evenement}/details', [EvenementController::class, 'showDetails'])->name('evenements.details');
+
+
+Route::resource('reservations', ReservationController::class);
+Route::get('/reservations/confirmed', [ReservationController::class, 'confirmed'])->name('reservations.confirmed');
+
 // route pour la desactivation du compte de l'association
 Route::post('desactivation/{id}', [EvenementController::class, 'deactivation'])->name('desactivation');
 Route::post('activation/{id}', [EvenementController::class, 'activation'])->name('activation');
@@ -66,6 +79,7 @@ Route::post('activation/{id}', [EvenementController::class, 'activation'])->name
 // Route::resource('evenements', EvenementController::class);
 Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
 
-Route::get('/landing', [EvenementController::class, 'landingPage'])->name('landing');
-Route::get('/evenements/{evenement}/details', [EvenementController::class, 'showDetails'])->name('evenements.details');
+/* afficher reservations */
+
 Route::resource('reservations', ReservationController::class);
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');

@@ -17,6 +17,7 @@ class EvenementController extends Controller
     {
         $evenements = Evenement::all();
         return view('evenements.index', compact('evenements'));
+        
 
         $evenements= Evenement::all();
         return view('landingpage', compact('liste_evenements'));
