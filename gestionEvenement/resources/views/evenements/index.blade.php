@@ -24,7 +24,7 @@
         </ul>
     </div>
 @endif
-    <div class="top-bar bg-white flex justify-between items-center p-4 shadow">
+    <div class="top-bar flex justify-between items-center p-4 ">
         <button id="burger-menu" class="block md:hidden text-yellow-500">
             <i class="fas fa-bars"></i>
         </button>
@@ -54,13 +54,13 @@
     <div class="big-container p-6">
         <div class="container-custom ">
             <h1 class="title-card text-2xl font-bold mb-6">Liste des événements en cours</h1>
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class=" rounded-lg  p-4">
                 @if($evenements->isEmpty())
                     <p>Aucun événement trouvé.</p>
                 @else
                     <div class="grid grid-cols-1 gap-6">
                         @foreach($evenements as $evenement)
-                            <div class="bg-white shadow-lg rounded-lg overflow-hidden flex relative mb-6">
+                            <div class="bg-white rounded-lg overflow-hidden flex relative mb-6">
                                 <div class="w-full md:w-1/3">
                                     <img src="{{ asset('storage/images/' . $evenement->image) }}" class="w-full h-48 object-cover rounded-t-lg" alt="{{ $evenement->nom }}">
                                 </div>

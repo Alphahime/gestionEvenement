@@ -120,8 +120,11 @@
             background-color: #08143F;
             border-radius: 1rem;
             width: 350px;
-            overflow-y: scroll
+            
         }
+
+      
+
 
         .sidebar a {
             color: #ffffff;

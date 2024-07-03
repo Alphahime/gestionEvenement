@@ -1,49 +1,64 @@
 {{-- <link rel="stylesheet" href="{{ asset('css/inscription.css') }}"> --}}
+{{-- <style>
+    .input{
+        border: 1px solid #FFC441;
+    width: 660px;
+    height: 40px;
+    border-radius: 9px;
+    margin-top: 30px;
+    /* margin-left: 40px; */
+    }
 
-<x-guest-layout>
+   
+    
+
+</style>
+
+<x-guest-layout >
+    <div class="contenu">
     <form method="POST" action="{{ route('register') }}">
-        @csrf
+        @csrf --}}
 
         <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Prenom')" />
+        {{-- <div>
+            <x-input-label class="input" for="name" :value="__('Prenom')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+        </div> --}}
 
         {{-- nom --}}
 
-        <div>
+        {{-- <div>
             <x-input-label for="nom" :value="__('Nom')" />
             <x-text-input id="nom" class="block mt-1 w-full" type="text" name="nom" :value="old('nom')" required autofocus autocomplete="nom" />
             <x-input-error :messages="$errors->get('nom')" class="mt-2" />
-        </div>
+        </div> --}}
 
         {{-- telephone --}}
 
-        <div>
+        {{-- <div>
             <x-input-label for="telephone" :value="__('Telephone')" />
             <x-text-input id="telephone" class="block mt-1 w-full" type="text" name="telephone" :value="old('telephone')" required autofocus autocomplete="telephone" />
             <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
-        </div>
+        </div> --}}
 
         {{-- adresse --}}
 
-        <div>
+        {{-- <div>
             <x-input-label for="adresse" :value="__('Adresse')" />
             <x-text-input id="adresse" class="block mt-1 w-full" type="text" name="adresse" :value="old('adresse')" required autofocus autocomplete="adresse" />
             <x-input-error :messages="$errors->get('adresse')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Email Address -->
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Password -->
-        <div class="mt-4">
+        {{-- <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
@@ -52,10 +67,10 @@
                             required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+         {{-- <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
@@ -67,50 +82,50 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Vous avez deja un compte?') }}
             </a>
 
             <x-primary-button class="ms-4">
-                {{ __('Register') }}
+                {{ __('s\'inscrire') }}
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> 
+</div>
+ --}}
 
 
-{{-- <!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Formulaire d'inscription</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 </head>
 <body>
     <h1>Formulaire d'inscription</h1>
     <h3 style="text-align: center">s'inscrire avec :</h3>
 
-    @if(session ('status'))
-    <div class="alert alert-success">
-        {{ session ('status') }}
-    </div>
+    @if(session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
     @endif
     
     <form method="POST" action="{{ route('register') }}">
-                @csrf
+        @csrf
         <div class="reseau">
             <div class="input-container">
                 <i class="fab fa-facebook icon"></i>
                 <input type="text" placeholder="Facebook" name="facebook" id="facebook">
-               
             </div>
             <div class="input-container">
                 <i class="fab fa-twitter icon"></i>
                 <input type="text" placeholder="Twitter" name="twitter" id="twitter">
-               
             </div>
             <div class="input-container">
                 <i class="fab fa-instagram icon"></i>
@@ -120,21 +135,21 @@
         <div class="nom_compet">
             <div class="form">
                 <div class="vertical">
-                    <label for="prenom">Prenom</label>
-                    <input type="text" placeholder="prenom" name="prenom">
+                    <label for="name">Prenom</label>
+                    <input type="text" placeholder="prenom" name="name" value="{{ old('name') }}" required>
                 </div>
-                @error('prenom')
-                <div class="alert alert-succes">{{ $message }}</div>    
+                @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>    
                 @enderror
             </div>
         
             <div class="form">
                 <div class="vertical">
                     <label for="nom">Nom</label>
-                    <input type="text" placeholder="nom" name="nom">
+                    <input type="text" placeholder="nom" name="nom" value="{{ old('nom') }}" required>
                 </div>
                 @error('nom')
-                <div class="alert alert-succes">{{ $message }}</div>    
+                    <div class="alert alert-danger">{{ $message }}</div>    
                 @enderror
             </div>
         </div>
@@ -142,21 +157,21 @@
         <div class="nom_compet">
             <div class="form">
                 <div class="vertical">
-                    <label for="telephone">telephone</label>
-                    <input type="text" placeholder="telephone" name="telephone">
+                    <label for="telephone">Telephone</label>
+                    <input type="text" placeholder="telephone" name="telephone" value="{{ old('telephone') }}" required>
                 </div>
                 @error('telephone')
-                <div class="alert alert-succes">{{ $message }}</div>    
+                    <div class="alert alert-danger">{{ $message }}</div>    
                 @enderror
             </div>
 
             <div class="form">
                 <div class="vertical">
-                    <label for="email">email</label>
-                    <input type="email" placeholder="ndeye@gmail.com" name="email">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="email" name="email" value="{{ old('email') }}" required>
                 </div>
                 @error('email')
-                <div class="alert alert-succes">{{ $message }}</div>    
+                    <div class="alert alert-danger">{{ $message }}</div>    
                 @enderror
             </div>
         </div>
@@ -164,32 +179,45 @@
         <div class="nom_compet">
             <div class="form">
                 <div class="vertical">
-                    <label for="adress">adress</label>
-                    <input type="text" placeholder="adress" name="adresse">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" placeholder="adresse" name="adresse" value="{{ old('adresse') }}" required>
                 </div>
                 @error('adresse')
-                <div class="alert alert-succes">{{ $message }}</div>    
+                    <div class="alert alert-danger">{{ $message }}</div>    
                 @enderror
             </div>
 
             <div class="form">
                 <div class="vertical">
-                    <label for="prenom">mot de pass</label>
-                    <input type="password" placeholder="mot de pass" name="password">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" placeholder="mot de passe" name="password" required>
                 </div>
-                @error('mdp')
-                <div class="alert alert-succes">{{ $message }}</div>    
+                @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>    
+                @enderror
+            </div>
+        </div>
+
+        <div class="nom_compet">
+            <div class="form">
+                <div class="vertical">
+                    <label for="password_confirmation">Confirmer le mot de passe</label>
+                    <input type="password" placeholder="confirmer le mot de passe" name="password_confirmation" required>
+                </div>
+                @error('password_confirmation')
+                    <div class="alert alert-danger">{{ $message }}</div>    
                 @enderror
             </div>
         </div>
 
         <div class="composant_bouton">
-            <input class="bouton" type="submit" value="soumettre">
+            <input class="bouton" type="submit" value="Soumettre">
         </div> 
     </form>
-    <div class="question"><hr class="costum_hr">
-        <p>vous n'avez pas de compte? <a href="">s'inscrire</a></p> 
-     </div>
+
+    <div class="question">
+        <hr class="costum_hr">
+        <p>Vous avez déjà un compte ? <a href="{{ route('login') }}">Se connecter</a></p> 
+    </div>
 </body>
-</html>
- --}}
+</html> 

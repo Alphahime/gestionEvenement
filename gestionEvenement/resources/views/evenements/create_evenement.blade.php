@@ -4,7 +4,8 @@
     <title>Ajouter Evenement</title>
 </head>
 <body class="container"> 
-
+@extends('layouts.dashboardAssociation')
+@section( 'content')
 
     <div class="container mt-5">
         <h1 id="h1">Ajouter un événement</h1>
