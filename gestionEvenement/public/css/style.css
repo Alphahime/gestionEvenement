@@ -49,8 +49,130 @@
     gap: 4em;
 }
 
-@media screen and (max-width:480px){
+/*navbar et footer*/
+/* navbar*/
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #1D275F;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+}
 
+.nav{
+    display: flex;
+    gap: 30px;
+    
+
+    
+}
+
+
+
+.navbar{
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    
+}
+
+#connection{
+    background-color: #FFC441;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+
+/* footer*/
+
+.footer{
+    background-color: #1D275F;
+}
+
+.footer1{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.footer2{
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+
+#hr1{
+    width: 90%;
+}
+
+#hr2{
+    width: 90%;
+}
+
+#youtube{
+    width: 50px;
+    height: 40px;
+    color: white;
+}
+
+#facebook{
+    width: 50px;
+    height: 40px;
+    color: white;
+}
+
+#twitter{
+    width: 50px;
+    height: 40px;
+    color: white;
+}
+
+#instagram{
+    width: 50px;
+    height: 40px;
+    color: white;
+}
+
+#linkedin{
+    width: 50px;
+    height: 40px;
+    color: white;
+}
+
+#copyright{
+    color: white;
+    margin-left: 30px;
+    margin-bottom: 50px;
+}
+
+#input{
+    width: 250px;
+    height: 40px;
+}
+
+#sinscrire{
+    background-color: #FFC441;
+    font-size: 20px;
+    padding: 10px;
+    
+    margin-top: 10px;
+}
+@media screen and (max-width:480px){
+/* footer*/
+
+.footer{
+    text-align: center;
+}
+.footer1{
+    display: block;
+}
+.footer2{
+    display: block;
+}
     #h1{
         text-align: center;
     }
@@ -158,6 +280,7 @@ body, label {
     height: auto;
     position: relative;
 }
+
 
 /* Styles pour la card d'informations */
 .card {
@@ -292,3 +415,4 @@ body, label {
             background-color: #e0a800;
             color: #08143F;
         }
+
