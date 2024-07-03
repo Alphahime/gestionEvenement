@@ -1,4 +1,4 @@
-@extends('layouts.acceuil')
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,35 +10,47 @@
     
 </head>
 <body>
-    <header>
-        <img src="" alt="Logo senevent's">
-    <nav>
-        <ul>
-            <li>Événéments</li>
-            <li>Créer</li>
-            <li>A propos</li>
-            <li>Contact</li>
+   
+    <header class="topbar">
+        <img src="{{ asset('imgs/logo.png')}}" alt="Logo senevent's" id="logo">
+    <nav class="nav">
+        <ul class="navbar">
+            <div>
+                <li>Événéments</li>
+            </div>
+            <div>
+                <li>Créer</li>
+            </div>
+            <div>
+                <li>A propos</li>
+            </div>
+            <div>
+                <li>Contact</li>
+            </div>
+            
         </ul>
-        <button>Connection</button>
+        <div>
+            <button id="connection">Connection</button>
+        </div>
+       
     </nav>
     </header>
+    @yields('body')
+    
 
-@yield('contenu')
-    <footer>
-        <div>
+    <footer class="footer">
+        <div class="footer1">
             <div>
-                <img src="" alt="">
+                <img src="{{ asset('imgs/logo.png')}}" alt="logo">
             </div>
             <div>
-                <input type="text">
-            
+                <input type="text" id="input">
+                <button id="sinscrire">S'inscrire</button>
             </div>
-            <div>
-                <button>S'inscrire</button>
-            </div>
+           
         </div>
-        <hr>
-        <div>
+        <hr id="hr1">
+        <div class="footer2">
             <div>
                 <h2>A propos</h2>
                 <p>Création d'événement</p>
@@ -57,8 +69,21 @@
             </div>
             <div>
                 <h2>Réseaux Sociaux</h2>
+               <a href="#"><ion-icon name="logo-youtube" id="youtube"></ion-icon></a> 
+               <a href="#"> <span><ion-icon name="logo-facebook" id="facebook"></ion-icon></span></a> 
+               <a href="#"> <ion-icon name="logo-twitter" id="twitter"></ion-icon></a> 
+               <a href="#"> <ion-icon name="logo-instagram" id="instagram"></ion-icon></a> 
+               <a href="#"><ion-icon name="logo-linkedin" id="linkedin"></ion-icon></a> 
             </div>
-        </div>
+       
+           
+            </div>
+            <hr id="hr2">
+          <strong><p id="copyright">senevents @ 2024 tout droits reservés</p></strong>  
+       
     </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
