@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // return redirect()->intended(route('dashboard', absolute: false));
-        return redirect('admin');
+        return redirect('mes_reservations');
     }
 
     /**
@@ -43,6 +43,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('mes_reservations');
+
     }
+
+   
+
 }

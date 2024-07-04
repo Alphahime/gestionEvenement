@@ -52,7 +52,7 @@ Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('associ
 
 
 // Route vers page index.blade.php  
-Route::resource('evenements', EvenementController::class);
+Route::resource('evenements', EvenementController::class)->middleware('auth');
 // Route::resource('evenements.store', EvenementController::class);
 
 Route::resource('role', RoleController::class);
@@ -83,6 +83,11 @@ Route::resource('evenements', EvenementController::class)->only(['edit', 'update
 
 Route::resource('reservations', ReservationController::class);
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
+// liste reservation pour un utitlisateur
+Route::get('mes_reservations',[ReservationController::class, 'reservation']);
+// route pour afficher le profil du user
+Route::get('profil_user',[UserController::class, 'profil']);
 
 Route::resource('evenements', EvenementController::class);
 Route::get('/evenements', [ReservationController::class, 'index'])->name('reservations.index');

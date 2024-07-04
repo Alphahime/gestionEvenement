@@ -233,12 +233,26 @@
         <img src="{{ asset('imgs/logo.png')}}" alt="Logo senevent's" id="logo">
     <nav class="nav">
         <ul class="navbar">
+            <a href="landing">
             <div>
                 <li>Événéments</li>
             </div>
-            <div>
-                <li>Créer</li>
-            </div>
+            </a>
+           
+            @if (  $association = Auth::guard('association')->user())
+            <a href="{{ route('evenements.create') }}">
+                <div>
+                    <li>Créer</li>
+                </div>
+            </a>
+        @else
+            <a href="connexion">
+                <div>
+                    <li>Créer</li>
+                </div>
+            </a>
+        @endif
+        
             <div>
                 <li>A propos</li>
             </div>

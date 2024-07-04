@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Mail\notification;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -48,7 +51,7 @@ class ReservationController extends Controller
         $reservation->save();
     
         // Redirection vers la liste des réservations après création
-        return redirect()->route('reservations.index')->with('success', 'Votre réservation a été effectuée avec succès.');
+        return redirect()->route('landingpage')->with('success', 'Votre réservation a été effectuée avec succès.');
     }
     
     /**
@@ -73,8 +76,20 @@ class ReservationController extends Controller
     public function update(Request $request, $id)
     {
         $reservation = Reservation::findOrFail($id);
-        $reservation->status = $request->input('status');
+
+        // Valider la requête si nécessaire, mais dans ce cas, nous n'en avons pas besoin car le statut est défini par le bouton
+    
+        // Récupérer le statut à partir du bouton
+        $status = $request->input('status');
+    
+        // Mettre à jour le statut avec la valeur du bouton
+        $reservation->status = $status;
         $reservation->save();
+    
+        // Envoyer l'email si le statut est "refuse"
+        if ($status === 'refuse') {
+            Mail::to($reservation->user->email)->send(new notification($reservation));
+        }
 
         return redirect()->back()->with('success', 'Statut de la réservation mis à jour avec succès.');
     }
@@ -83,7 +98,9 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reservation=reservation::find($id);
+        $reservation->delete();
+        return redirect('reservations');
     }
     public function confirmed()
     {
@@ -93,4 +110,14 @@ class ReservationController extends Controller
         // Retourner la vue avec les réservations confirmées
         return view('reservations.confirmed', compact('reservations'));
     }
-}
+
+    public function reservation(){
+        $reservations=Reservation::all();
+        return view('reservations.affiche_reservation',compact('reservations'));
+    }
+
+  
+
+    
+    }
+

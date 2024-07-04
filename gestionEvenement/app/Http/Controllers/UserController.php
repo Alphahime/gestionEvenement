@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -65,7 +66,7 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $user->update($request->all());
-        return redirect('users');
+        return redirect('profil_user');
     }
 
     /**
@@ -76,5 +77,11 @@ class UserController extends Controller
         $user=User::find($id);
         $user->delete();
         return redirect()->back();
+    }
+
+    public function profil()
+    {
+        $user = Auth::user();
+        return view('users.profile', compact('user'));
     }
 }

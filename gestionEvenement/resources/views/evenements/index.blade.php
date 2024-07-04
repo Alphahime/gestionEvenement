@@ -13,6 +13,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <title>Document</title>
+    <style>
+        .association{
+            color: black
+        }
+    </style>
 </head>
 <body class="bg-white">
     @if ($errors->any())
@@ -25,7 +30,10 @@
     </div>
     @endif
     <div class="top-bar flex justify-between items-center p-4 bg-gray-200">
-        <button id="burger-menu" class="block md:hidden text-yellow-500">
+        <div class="association">
+            <h1>Bonjour </h1><h1>{{ Auth::guard('association')->user()->nom }}</h1>
+        </div>
+                <button id="burger-menu" class="block md:hidden text-yellow-500">
             <i class="fas fa-bars"></i>
         </button>
         <div class="profile-icons  flex space-x-4">
@@ -36,11 +44,11 @@
     
     <div class="stats-container p-6">
         <div class="stat-item bg-gray-200 rounded-lg p-4 mb-4">
-            <p class="text-4xl font-bold">150</p>
+            <p class="text-4xl font-bold">{{ $countReservations }}</p>
             <span class="text-gray-500">Nombre de réservations</span>
         </div>
         <div class="stat-item bg-gray-200 rounded-lg p-4 mb-4">
-            <p class="text-4xl font-bold">5</p>
+            <p class="text-4xl font-bold">{{  $countEvenements }}</p>
             <span class="text-gray-500">Nombre d’évènement en cours</span>
         </div>
         <div class="stat-item bg-gray-200 rounded-lg p-4 mb-4">

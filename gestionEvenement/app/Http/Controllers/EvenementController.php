@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Association;
 use App\Models\Evenement;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,9 +15,12 @@ class EvenementController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+
     {
+        $countReservations = Reservation::count();
+        $countEvenements = Evenement::count();
         $evenements = Evenement::all();
-        return view('evenements.index', compact('evenements'));
+        return view('evenements.index', compact('evenements', 'countReservations','countEvenements'));
         
 
         $evenements= Evenement::all();
