@@ -1,0 +1,91 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body, label {
+    font-family: 'Poppins', sans-serif;
+    color: #1D275F;
+}
+
+#h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+#nom, #lieu, #date, #nombre_place, #date_limite_inscription, #image, #description {
+    border-color: #FFC441;
+    width: 100%;
+    height: 3rem;
+}
+
+#description {
+    height: auto;
+}
+
+#ajouter_evenement {
+    width: 100%;
+    height: 3rem;
+    color: #1D275F;
+    background-color: #FFC441; 
+    border-color: #FFC441; 
+}
+
+#ajouter_evenement:hover {
+    background-color: #e0a800; 
+}
+
+.alert {
+    font-family: 'Poppins', sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+    #h1 {
+        text-align: center;
+    }
+    .premier, .deuxieme {
+        display: block;
+    }
+    #description, #date_limite_inscription, #ajouter_evenement, #nom, #lieu, #nombre_place, #image, #date {
+        width: 100%;
+    }
+    .form {
+        width: 100%;
+    }
+    body {
+        overflow-x: hidden;
+    }
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+form {
+    margin: 7rem auto;
+    max-width: 600px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.yellow-border {
+    border-color: #FFC441 !important; 
+}
+
+.boutton-submit,
+.btn-evenement {
+    padding: 1rem 1rem;
+    background-color: #FFC441;
+    color: #1D275F;
+    font-size: 16px;
+    border-radius: 2rem;
+    font-weight: 600;
+}

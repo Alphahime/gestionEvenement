@@ -77,7 +77,7 @@ Route::post('activation/{id}', [EvenementController::class, 'activation'])->name
 
 // Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
 // Route::resource('evenements', EvenementController::class);
-Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
+Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy','index']);
 
 /* afficher reservations */
 
@@ -89,3 +89,5 @@ Route::get('mes_reservations',[ReservationController::class, 'reservation']);
 // route pour afficher le profil du user
 Route::get('profil_user',[UserController::class, 'profil']);
 
+Route::resource('evenements', EvenementController::class);
+Route::get('/evenements', [ReservationController::class, 'index'])->name('reservations.index');
