@@ -241,3 +241,41 @@
         background-color: #4a5568;
     }
 }
+
+body{
+    font-family: poppins;
+}
+.sidebar {
+    background-color: #08143F;
+    border-radius: 1rem;
+    width: 350px;
+    
+    
+}
+
+
+
+
+.sidebar a {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sidebar a:hover {
+    background-color: #FFC441;
+    color: #08143F;
+}
+
+.sidebar .icon {
+    color: #FFC441;
+}
+
+.h-12 {
+    width: 100px;
+    height: 100px;
+}
+
+.logout {
+    margin-top: 30rem;
+}

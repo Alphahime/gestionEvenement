@@ -77,9 +77,12 @@ Route::post('activation/{id}', [EvenementController::class, 'activation'])->name
 
 // Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
 // Route::resource('evenements', EvenementController::class);
-Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy']);
+Route::resource('evenements', EvenementController::class)->only(['edit', 'update', 'destroy','index']);
 
 /* afficher reservations */
 
 Route::resource('reservations', ReservationController::class);
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
+Route::resource('evenements', EvenementController::class);
+Route::get('/evenements', [ReservationController::class, 'index'])->name('reservations.index');

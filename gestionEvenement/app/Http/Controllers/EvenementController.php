@@ -73,17 +73,16 @@ class EvenementController extends Controller
             'description' => 'required|string',
             'nombre_place' => 'required|integer',
             'date_limite_inscription' => 'required|date',
-            // 'association_id' => 'required|integer|exists:associations,id',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
         // Traitement de l'image
         $image = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
             $image = basename($imagePath);
         }
-
+    
         // Création de l'événement dans la base de données
         Evenement::create([
             'nom' => $request->nom,
@@ -95,9 +94,11 @@ class EvenementController extends Controller
             'association_id' => $request->association_id,
             'image' => $image,
         ]);
-
-        return redirect()->route('evenements.index')->with('success', 'Événement ajouté avec succès');
+    
+        // Redirection vers la liste des réservations
+        return redirect()->route('reservations.index')->with('success', 'Événement ajouté avec succès');
     }
+    
 
     /**
      * Display the specified resource.
