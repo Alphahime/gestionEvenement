@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $user->update($request->all());
-        return redirect('profil_user');
+        return redirect('profil_user')->with('success', 'Votre modification a été effectuée avec succès.');
     }
 
     /**

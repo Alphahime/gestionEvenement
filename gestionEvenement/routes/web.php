@@ -1,17 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EvenementController;
-
-use App\Models\Evenement;
 use App\Http\Controllers\AssociationController;
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\RoleController;
+
+use App\Http\Controllers\UserController;
+use App\Models\Evenement;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,7 +54,7 @@ Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('associ
 
 
 // Route vers page index.blade.php  
-Route::resource('evenements', EvenementController::class)->middleware('auth');
+Route::resource('evenements', EvenementController::class)->middleware(Auth::guard('association'));
 // Route::resource('evenements.store', EvenementController::class);
 
 Route::resource('role', RoleController::class);

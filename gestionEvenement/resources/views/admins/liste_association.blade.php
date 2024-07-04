@@ -19,6 +19,16 @@
     margin-top: 100px
   }
 
+  .icon{
+    margin-top: 10px;
+    margin-left: 27px;
+  
+  }
+  .sup{
+    margin-left: 29px;
+
+  }
+
   </style>
 
   @extends('layouts.dashboardAdmin')
@@ -36,7 +46,9 @@
             <th scope="col">secteur</th>
             <th scope="col">contact</th>
             <th scope="col">adresse</th>
-            <th scope="col">Action</th>
+            <th scope="col">Supprimer</th>
+            <th scope="col">Desactiver</th>
+            <th scope="col">Activer</th>
             
 
           </tr>
@@ -59,33 +71,35 @@
             <td>{{ $association->contact }}</td>
             <td>{{ $association->adress }}</td>
             <td>
+              {{-- supprimer --}}
                 <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $association->id }}').submit();">
-                    <i class="fa-solid fa-xmark" style="color: #c72323;"></i>  
+                   <div class="sup"><i class="fa-solid fa-xmark" style="color: #c72323;"></i>  </div> 
                 </a>
             
                 <form id="delete-form-{{ $association->id }}" action="{{ route('association.destroy', ['association' => $association->id]) }}" method="POST" style="display: none;">
                     @csrf
                     @method('DELETE')
                 </form>
-                  {{-- desactiver une assocation --}}
-
+                
+                </td> 
+                <td>
+                    {{-- desactiver une assocation --}}
                   <form action="{{ route('desactivation', $association->id) }}" method="POST">
                     @csrf
                 <button type="submit" style="border: none; background-color: transparent;"> 
-                  <i class="fa-solid fa-ban fa-xs" style="color: #d61f1f;"></i>           
+                 <div class="icon"><i class="fa-solid fa-ban fa-xs" style="color: #d61f1f;"></i>  </div>          
                     </button>
                 </form>
-                
-                     {{-- activer --}}
-                     <form action="{{ route('activation', $association->id) }}" method="POST">
-                      @csrf
-                  <button type="submit" style="border: none; background-color: transparent;">
-                  <i class="fa-solid fa-check" style="color: #36bc24;"></i>
-                      </button>
-                  </form>
-
-                {{-- <i class="fa-thin fa-ban" style="color: #ec1313;"></i>  --}}
-                </td> 
+                </td>
+                <td>
+                       {{-- activer --}}
+                       <form action="{{ route('activation', $association->id) }}" method="POST">
+                        @csrf
+                    <button type="submit" style="border: none; background-color: transparent;">
+                   <div class="sup"><i class="fa-solid fa-check" style="color: #36bc24;"></i></div> 
+                        </button>
+                    </form>
+                </td>
             
           
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Mail\notification;
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +51,7 @@ class ReservationController extends Controller
         $reservation->save();
     
         // Redirection vers la liste des réservations après création
-        return redirect()->route('landingpage')->with('success', 'Votre réservation a été effectuée avec succès.');
+        return redirect('mes_reservations')->with('success', 'Votre réservation a été effectuée avec succès.');
     }
     
     /**
@@ -112,8 +112,9 @@ class ReservationController extends Controller
     }
 
     public function reservation(){
-        $reservations=Reservation::all();
-        return view('reservations.affiche_reservation',compact('reservations'));
+        $user = Auth::user();
+        $reservations = $user->reservations()->with('evenement')->paginate(10);   
+             return view('reservations.affiche_reservation',compact('reservations'));
     }
 
   

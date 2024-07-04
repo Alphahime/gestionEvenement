@@ -9,42 +9,77 @@
     @extends('layouts.connection')
 @section('content')
 
-    <style>
-      .card{
-        margin-top: 30px;
+<style>
+  .container{
+         display:flex;
+         width: 1190px;
+         height: 260px;
+         margin-left: 260px;
+         border: #Ce0033;
+         border: 1px solid rgba(255, 196, 65, 1);
+         margin-top: 30px;
+         box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+         border-radius: 12px
+         
         
-
-      }
-      body{
-        font-family: poppins;
-        font-size: 20px
-      }
-    </style>
+     }
+     .paragraphe h3{
+        
+       
+        color: #FFC441;
+         font-family: Montserrat;
+         margin-left: 28px;
+        
+     }
+     .container img{
+         width: 180px;
+         height: 180px;
+         border-radius: 50%;
+         margin-top:25px ;
+         margin-left: 40px;
+     }
+     .container h2{
+         color: #Ce0033;
+         text-align: center;
+         font-family: Montserrat;
+     }
+     .container p{
+         margin-left: 30px;
+         font-size: 22px;
+         text-align: justify;
+         font-family: Montserrat;
+     }
+     .paragraphe{
+      margin-top: 30px;
+      margin-left: 70px;
+     }
+   
+ </style>  
 </head>
 <body>
 
 
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        {{ $message }}
+    </div>
+@endif
 
 
   <h2 id="title">Mes Réservations</h2>
-@foreach($reservations as $reservation)
-<div class="card @if($reservation->status === 'refuse') border-danger @endif" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{ $reservation->evenement->image }}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Nom: {{ $reservation->evenement->nom }}</h5>
-        <p class="card-text">Date: {{ $reservation->evenement->date }}</p>
-        <p class="card-text">Date d'inscription: {{ $reservation->created_at }}</p>
-        <p class="card-text">Status: {{ $reservation->status }}</p>
-      </div>
-    </div>
-  </div>
+  @foreach($reservations as $reservation)
+<div class="container @if($reservation->status === 'refuse') border border-danger @endif">
+  <img class="img" src="{{ asset('storage/images/' . $reservation->evenement->image) }}" class="w-full h-48 object-cover rounded-t-lg" alt="{{ $reservation->evenement->nom }}">
+  <div  class="paragraphe">
+    <h3 class="card-title">Nom: {{ $reservation->evenement->nom }}</h3>   
+    <p class="card-text">Date: {{ $reservation->evenement->date }}</p>
+    <p class="card-text">Date d'inscription: {{ $reservation->created_at }}</p>
+    <p class="card-text">Status: {{ $reservation->status }}</p>
 </div>
-
-
+</div>
+{{-- <div class="mt-6">
+    {{ $reservations->links() }}
+</div>  --}}
 @endforeach
 @endsection
 </body>

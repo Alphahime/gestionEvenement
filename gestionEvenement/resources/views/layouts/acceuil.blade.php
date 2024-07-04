@@ -106,14 +106,20 @@
         font-size: 20px;
         padding: 10px;
        
+       
     }
     
     .nav{
         display: flex;
         gap: 30px;
+        margin-top: 30px;
         
     
         
+    }
+    nav a{
+        text-decoration: none;
+        color: white;
     }
     
     
@@ -130,13 +136,14 @@
         font-size: 20px;
         padding: 10px;
         border-radius: 30px;
-        margin-top: 10px;
+        margin-top: -35px;
     }
     
     /* footer*/
     
     .footer{
-        background-color: #1D275F;
+        background-color: #08143F;
+      
     }
     
     .footer1{

@@ -16,10 +16,11 @@ class EvenementController extends Controller
      */
     public function index()
 
-    {
+    { 
         $countReservations = Reservation::count();
         $countEvenements = Evenement::count();
-        $evenements = Evenement::all();
+        // $evenements = Evenement::all();
+        $evenements = Evenement::paginate(2);
         return view('evenements.index', compact('evenements', 'countReservations','countEvenements'));
         
 

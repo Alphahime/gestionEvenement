@@ -17,6 +17,9 @@
         .association{
             color: black
         }
+        .lien{
+            color: black;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -57,7 +60,8 @@
             </a>
         </div>
     </div>
-
+    
+   
     <div class="big-container p-6">
         <div class="container-custom">
             <h1 class="title-card text-2xl font-bold mb-6">Liste des événements en cours</h1>
@@ -86,6 +90,9 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:underline"><i class="fas fa-trash-alt"></i></button>
+                                            <div class="mt-6">
+                                                {{ $evenements->links() }}
+                                            </div> 
                                         </form>
                                     </div>
                                 </div>
@@ -96,6 +103,8 @@
             </div>
         </div>
     </div>
+
+   
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {

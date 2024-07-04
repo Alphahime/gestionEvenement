@@ -17,7 +17,7 @@
 }
 
 .nav{
-    margin-right: 20px;
+    margin-right: 80px;
 }
 
 .navbar{
@@ -33,6 +33,10 @@
     display: flex;
    
 }
+.profil{
+    margin-left: 12px;
+    margin-top: 5px;
+}
 
 
 
@@ -46,8 +50,9 @@
 
 #deconnection{
     background-color: #FFC441;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 18px;
+    padding: 5px;
     border-radius: 30px;
-    margin-top: 10px;
+    border: 1px solid  #FFC441;
+    margin-top: 2px;
 }

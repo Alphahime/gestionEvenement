@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Evenement::class,'reservations');
     }
 
-    public function reservation(){
+    public function reservations(){
 
         return $this->hasMany(Reservation::class);
     }

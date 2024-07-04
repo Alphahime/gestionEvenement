@@ -11,6 +11,12 @@
     .custom-border-radius{
         border-radius: 60px;
     }
+    .nav{
+        margin-top: 20px;
+       
+    }
+
+   
     </style>  
 </head>
 <body>
@@ -49,13 +55,18 @@
             <div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="btn btn-primary custom-border-radius">Déconnexion</button>
+                    <button type="submit" id="deconnection">Déconnexion</button>
                 </form>
                 </div>
 
           
             </div>
-            <a href="profil_user">profil</a>
+            <a href="profil_user">
+                <div class="profil">
+                    <li>Profil</li>
+                </div>
+                 </a>
+           
 
         </nav>
         </div>
