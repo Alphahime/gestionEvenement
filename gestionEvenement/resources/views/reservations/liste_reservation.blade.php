@@ -75,5 +75,5 @@
             window.location.href = document.getElementById('bouton_reserver').href;
         }
     } --}}
-</script>
+{{-- </script> --}}
 

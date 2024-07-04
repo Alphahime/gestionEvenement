@@ -11,7 +11,7 @@
         <img src="{{ asset('imgs/a_propos.png')}}" alt="Bannière">
     </div>
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="section1">
             <div class="infos_detail card">
                 <div class="card-info">
@@ -37,6 +37,54 @@
                 <a href="{{ route('login') }}" id="bouton_reserver">Réserver ma place</a>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    <section class="contenu">
+        <div class="popup">
+            <p>Détails de l'événement : {{ $evenement->nom }}</p>
+            
+            <div>
+                <p>Description : {{ $evenement->description }}</p>
+                <p>Lieu : {{ $evenement->lieu }}</p>
+                <p>Date : {{ $evenement->date }}</p>
+                <p>Date limite d'inscription : {{ $evenement->date_limite_inscription }}</p>
+            </div>
+    
+            @if(Auth::check())
+            <form action="{{ route('reservations.store') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="evenements_id" value="{{ $evenement->id }}">
+                    <button type="submit" class="btn btn-primary">Confirmer ma réservation</button>
+                </form>
+            @else
+                <a id="loginLink" href="{{ route('login') }}" class="btn btn-primary">Se connecter pour réserver</a>
+                <form action="{{ route('reservations.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="evenements_id" value="{{ $evenement->id }}">
+                    <button type="submit" class="btn btn-primary">Réserver ma place</button>
+                </form>
+
+                {{-- <form action="{{ route('reservations.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="evenements_id" value="{{ $evenement->id }}">
+                    <button type="submit" class="btn btn-primary">Réserver ma place</button>
+                </form> --}}
+            @endif
+        </div>
+    </section>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginLink = document.getElementById('loginLink');
+            const reservationForm = document.getElementById('reservationForm');
+    
+            loginLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                reservationForm.style.display = 'block'; // Afficher le formulaire de réservation
+                loginLink.style.display = 'none'; // Cacher le lien de connexion
+            });
+        });
+    </script>
+    
 </body>
 </html>

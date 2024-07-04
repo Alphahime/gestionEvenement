@@ -48,7 +48,7 @@ class ReservationController extends Controller
         $reservation->save();
     
         // Redirection vers la liste des réservations après création
-        return redirect()->route('reservations.index')->with('success', 'Votre réservation a été effectuée avec succès.');
+        return redirect()->route('landingpage')->with('success', 'Votre réservation a été effectuée avec succès.');
     }
     
     /**
@@ -93,4 +93,9 @@ class ReservationController extends Controller
         // Retourner la vue avec les réservations confirmées
         return view('reservations.confirmed', compact('reservations'));
     }
-}
+
+  
+
+    
+    }
+

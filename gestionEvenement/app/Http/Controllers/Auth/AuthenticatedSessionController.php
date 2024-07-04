@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // return redirect()->intended(route('dashboard', absolute: false));
-        return redirect('admin');
+        return redirect()->route('reservations.show', ['$reservation => id']);
     }
 
     /**
@@ -43,6 +43,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('evenements.show', ['$evenement => id']);
+
     }
+
+   
+
 }
