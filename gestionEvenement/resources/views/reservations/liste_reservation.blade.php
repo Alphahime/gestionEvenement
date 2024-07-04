@@ -1,22 +1,5 @@
-<!-- liste_reservation.blade.php -->
 
-@extends('layouts.dashboardAssociation')
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{asset('css/reservation.css')}}">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Liste des Réservations</h1>
-
-        @foreach ($reservations as $reservation)
-            <div class="card mb-4">
+            {{-- <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Réservation de {{ $reservation->user->name }}</h5>
                     <p class="card-text">
@@ -39,41 +22,89 @@
                         <button type="submit" class="btn btn-primary">Mettre à jour</button>
                     </form>
                 </div>
-            </div>
-        @endforeach
-
-        @if ($reservations->isEmpty())
-            <p>Aucune réservation trouvée.</p>
-        @endif
-    </div>
-</body>
-</html>
-
-
-{{-- <div id="popup" class="popup">
-    <div class="popup-content">
-        <p>Êtes-vous sûr de vouloir réserver votre place ?</p>
-        <div class="popup-buttons">
-            <button class="popup-button confirm" onclick="closePopup(true)">Confirmer</button>
-            <button class="popup-button cancel" onclick="closePopup(false)">Annuler</button>
-        </div>
-    </div>
-</div>
-<script>
-    function confirmReservation() { --}}
-        {{-- // Show the custom popup
-        document.getElementById('popup').style.display = 'flex';
-        return false; // Prevent the default link behavior
+            </div> --}}
+      <!-- liste_reservation.blade.php -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  {{-- {{-- <link rel="stylesheet" href="path/to/your/custom.css"> --}}
+  @extends('layouts.dashboardAssociation')
+  @section( 'content')
+  
+  <style>
+    .table{
+      background-color: #c72323;
+      margin-top: 10px;
+      font-family: poppins
     }
+    h1{
+      text-align: center;
+      font-family: poppins;
+      font-size: 32px;
+      margin:100px;
+    }
+  
+    .tout{
+      margin-top: 100px
+    }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+          <h1>Liste des Réservations</h1>
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">prenom</th>
+                  <th scope="col">Nom Evenement</th>
+                  <th scope="col">Date evenement</th>
+                  <th scope="col">Lieu evenement</th>
+                  <th scope="col">Statut</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">Supprimer</th>
+                </tr>
+  
+          @foreach ($reservations as $reservation)
+  
+          <tr>
+              <th scope="row">{{ $reservation->user->name }}</th>
+              <td>{{ $reservation->evenement->nom }}</td>
+              <td>{{ $reservation->evenement->date }}</td>
+              <td>{{ $reservation->evenement->lieu }}</td>
+              <td>{{ $reservation->status }}</td>
+<td>
+    @if($reservation->status !== 'refuse')
+        <form action="{{ route('reservations.update', $reservation->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <button type="submit" class="btn btn-danger" name="status" value="refuse">Refuser</button>
+        </form>
+    @else
+        <!-- Afficher un message ou un autre contenu si besoin -->
+        Réservation déjà refusée
+    @endif
+</td>
+            <td><a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $reservation->id }}').submit();">
+                <i class="fa-solid fa-xmark" style="color: #c72323;"></i>  
+            </a>
+        
+            <form id="delete-form-{{ $reservation->id }}" action="{{ route('reservations.destroy', ['reservation' => $reservation->id]) }}" method="POST" style="display: none;">
+                @csrf
+                @method('DELETE')
+            </form></td>
 
-    function closePopup(confirm) {
-        // Hide the custom popup
-        document.getElementById('popup').style.display = 'none';
+              
+          @endforeach
+          @if ($reservations->isEmpty())
+              <p>Aucune réservation trouvée.</p>
+          @endif
+      </div>
+  </body>
+  </html>
+  @endsection
+  
+  
+  
+  
 
-        if (confirm) {
-            // If the user confirmed, submit the reservation
-            window.location.href = document.getElementById('bouton_reserver').href;
-        }
-    } --}}
-{{-- </script> --}}
 

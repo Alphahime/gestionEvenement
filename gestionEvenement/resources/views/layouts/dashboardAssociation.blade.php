@@ -175,7 +175,7 @@
                     </a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="block py-2 px-4 w-full hover:bg-yellow-500 hover:text-white">
+                    <a href="{{ route('reservations.index') }}" class="block py-2 px-4 w-full hover:bg-yellow-500 hover:text-white">
                         <i class="fas fa-list-alt mr-2 icon"></i> Voir les réservations
                     </a>
                 </li>
