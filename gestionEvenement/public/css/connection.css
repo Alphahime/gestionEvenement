@@ -1,0 +1,48 @@
+/* navbar deconnection*/
+
+.topbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #081542;
+    color: white;
+    font-size: 20px;
+    justify-items: center;
+    
+}
+
+.nav{
+    margin-right: 20px;
+}
+
+.navbar{
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin-right: 30px;
+}
+
+.nav a{
+    color: white;
+    text-decoration: none;
+    display: flex;
+   
+}
+
+
+
+.nav1{
+    display: flex;
+}
+
+.nav2{
+    display: flex;
+}
+
+#deconnection{
+    background-color: #FFC441;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 10px;
+}
