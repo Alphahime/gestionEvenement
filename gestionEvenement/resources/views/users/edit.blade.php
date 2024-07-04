@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 </head>
 <body>
-    <h1>Formulaire d'inscription</h1>
-    <h3 style="text-align: center">s'inscrire avec :</h3>
+    <h1>Formulaire de Modification</h1>
 
     @if(session('status'))
     <div class="alert alert-success">
@@ -21,25 +20,12 @@
     <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
         @csrf
         @method('PUT')
-        <div class="reseau">
-            <div class="input-container">
-                <i class="fab fa-facebook icon"></i>
-                <input type="text" placeholder="Facebook" name="facebook" id="facebook" value="{{ old('facebook', $user->facebook) }}">
-            </div>
-            <div class="input-container">
-                <i class="fab fa-twitter icon"></i>
-                <input type="text" placeholder="Twitter" name="twitter" id="twitter" value="{{ old('twitter', $user->twitter) }}">
-            </div>
-            <div class="input-container">
-                <i class="fab fa-instagram icon"></i>
-                <input type="text" placeholder="Instagram" name="instagram" id="instagram" value="{{ old('instagram', $user->instagram) }}">
-            </div>
-        </div>
+        
         <div class="nom_compet">
             <div class="form">
                 <div class="vertical">
-                    <label for="prenom">Prenom</label>
-                    <input type="text" placeholder="prenom" name="prenom" value="{{ old('prenom', $user->prenom) }}">
+                    <label for="name">Prenom</label>
+                    <input type="text" placeholder="name" name="name" value="{{ old('name', $user->prenom) }}">
                 </div>
                 @error('prenom')
                 <div class="alert alert-succes">{{ $message }}</div>
@@ -95,9 +81,6 @@
             <input class="bouton" type="submit" value="Modifier">
         </div>
     </form>
-    <div class="question">
-        <hr class="costum_hr">
-        <p>vous n'avez pas de compte? <a href="{{ route('authuser.create') }}">s'inscrire</a></p>
-    </div>
+   
 </body>
 </html>

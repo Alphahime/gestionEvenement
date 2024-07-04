@@ -111,6 +111,11 @@ class ReservationController extends Controller
         return view('reservations.confirmed', compact('reservations'));
     }
 
+    public function reservation(){
+        $reservations=Reservation::all();
+        return view('reservations.affiche_reservation',compact('reservations'));
+    }
+
   
 
     

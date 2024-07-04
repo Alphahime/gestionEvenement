@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/connection.css')}}">
     <title>Document</title>
-    
+  <style>
+    .custom-border-radius{
+        border-radius: 60px;
+    }
+    </style>  
 </head>
 <body>
    
@@ -20,31 +24,38 @@
         <div>
         <nav class="nav">
             <div class="nav1">
-            <a href="#"><ul class="navbar">
+           <ul class="navbar">
+            <a href="landing">
                 <div>
                     <li>Événéments</li>
                 </div>
-                <div>
-                    <li>Créer</li>
-                </div>
+            </a>
+            <a href="{{ route('evenements.create') }}"> <div>
+                <li>Créer</li>
+            </div></a>
+               
                 <div>
                     <li>A propos</li>
                 </div>
+                <a href="mes_reservations"> 
                 <div>
                     <li>Mes réservations</li>
                 </div>
+                 </a>
                 
                 </ul>
-            </a>
-
+           
             <div class="nav2">
             <div>
-                 <button id="deconnection">Deconnection</button>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary custom-border-radius">Déconnexion</button>
+                </form>
                 </div>
-            <div>
-                <img src="{{ asset('imgs/atelier')}}" alt="image_user">
+
+          
             </div>
-            </div>
+            <a href="profil_user">profil</a>
 
         </nav>
         </div>

@@ -26,7 +26,7 @@
         @section('body')
         <div class="banniere">
             <div>
-                <img src="{{ asset('imgs/imm.png') }}" alt="banniere" id="img_ban">
+                <img src="{{ asset('imgs/image 7.png') }}" alt="banniere" id="img_ban">
             </div>
             <div class="text_ban">
                 <h2>Découvrez et participez aux <br>événements incontournables près <br> de chez vous !</h2>
