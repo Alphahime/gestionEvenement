@@ -1,5 +1,10 @@
 /* public/css/reservation.css */
-
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 /* Styles généraux */
 body {
     font-family: Arial, sans-serif;
