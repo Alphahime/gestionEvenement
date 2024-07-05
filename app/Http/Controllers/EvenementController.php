@@ -18,7 +18,7 @@ class EvenementController extends Controller
         $countReservations = Reservation::count();
         $countEvenements = Evenement::count();
         $evenements = Evenement::paginate(2);
-        
+
         return view('evenements.index', compact('evenements', 'countReservations', 'countEvenements'));
     }
 
@@ -27,13 +27,7 @@ class EvenementController extends Controller
      */
     public function create()
     {
-        $association = Auth::guard('association')->user();
-    
-        if (!$association->active) {
-            return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
-        }
-    
-        return view('evenements.create', compact('association'));
+        return view('evenements.create');
     }
 
     /**
@@ -51,22 +45,22 @@ class EvenementController extends Controller
             'date_limite_inscription' => 'required|date',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+
         // Traitement de l'image
         $image = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
             $image = basename($imagePath);
         }
-    
-        // Récupérer l'ID de l'association authentifiée
-        $associationId = Auth::guard('association')->id();
-    
-        // Vérifier que l'association existe et est active
-        if (!$associationId) {
-            return redirect()->back()->withErrors(['Association non trouvée ou inactive.']);
+
+        // Vérifier si l'ID de l'association est valide
+        $associationId = $request->association_id;
+
+        if (!$associationId || !Association::where('id', $associationId)->exists()) {
+            // Gérer l'erreur ou attribuer une association par défaut
+            $associationId = 1; // ID de l'association par défaut
         }
-    
+
         // Création de l'événement dans la base de données
         Evenement::create([
             'nom' => $request->nom,
@@ -78,11 +72,10 @@ class EvenementController extends Controller
             'association_id' => $associationId,
             'image' => $image,
         ]);
-    
+
         // Redirection vers la liste des événements avec un message de succès
         return redirect()->route('evenements.index')->with('success', 'Événement ajouté avec succès');
     }
-
     /**
      * Affiche les détails d'un événement spécifique.
      */

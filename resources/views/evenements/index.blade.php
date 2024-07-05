@@ -14,32 +14,37 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <title>Document</title>
     <style>
-        .association{
-            color: black
+        .association {
+            color: black;
         }
-        .lien{
+        .lien {
             color: black;
         }
     </style>
 </head>
 <body class="bg-white">
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
     <div class="top-bar flex justify-between items-center p-4 bg-gray-200">
         <div class="association">
-            <h1>Bonjour </h1><h1>{{ Auth::guard('association')->user()->nom }}</h1>
+            <h1>Bonjour</h1>
+            @if (Auth::guard('association')->check())
+                <h1>{{ Auth::guard('association')->user()->nom }}</h1>
+            @else
+                <h1>Invité</h1>
+            @endif
         </div>
-                <button id="burger-menu" class="block md:hidden text-yellow-500">
+        <button id="burger-menu" class="block md:hidden text-yellow-500">
             <i class="fas fa-bars"></i>
         </button>
-        <div class="profile-icons  flex space-x-4">
+        <div class="profile-icons flex space-x-4">
             <a href="#" class="text-yellow-500"><i class="fas fa-bell"></i></a>
             <a href="#" class="text-yellow-500"><i class="fas fa-user-circle"></i></a>
         </div>
@@ -51,8 +56,8 @@
             <span class="text-gray-500">Nombre de réservations</span>
         </div>
         <div class="stat-item bg-gray-200 rounded-lg p-4 mb-4">
-            <p class="text-4xl font-bold">{{  $countEvenements }}</p>
-            <span class="text-gray-500">Nombre d’évènement en cours</span>
+            <p class="text-4xl font-bold">{{ $countEvenements }}</p>
+            <span class="text-gray-500">Nombre d’évènements en cours</span>
         </div>
         <div class="stat-item bg-gray-200 rounded-lg p-4 mb-4">
             <a href="{{ route('evenements.create') }}" class="add-event-btn text-yellow-500">
@@ -61,7 +66,6 @@
         </div>
     </div>
     
-   
     <div class="big-container p-6">
         <div class="container-custom">
             <h1 class="title-card text-2xl font-bold mb-6">Liste des événements en cours</h1>
@@ -90,7 +94,6 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:underline"><i class="fas fa-trash-alt"></i></button>
-
                                         </form>
                                     </div>
                                 </div>
@@ -101,8 +104,6 @@
             </div>
         </div>
     </div>
-
-   
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {

@@ -43,7 +43,7 @@ Route::post('verification_connexion', [AuthController::class, 'store']);
 Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('association.logout');
 
 // Routes protégées pour les associations
-Route::middleware('auth:association')->group(function () {
+//Route::middleware('auth:association')->group(function () {
     Route::resource('evenements', EvenementController::class);
     Route::get('evenements_admin', [EvenementController::class, 'afficher']);
     Route::get('supprimer_evenement/{id}', [EvenementController::class, 'suppression']);
@@ -55,4 +55,4 @@ Route::middleware('auth:association')->group(function () {
     Route::get('mes_reservations', [ReservationController::class, 'reservation']);
     Route::get('profil_user', [UserController::class, 'profil']);
     Route::post('/evenements', [EvenementController::class, 'store'])->name('evenements.store');
-});
+//});
