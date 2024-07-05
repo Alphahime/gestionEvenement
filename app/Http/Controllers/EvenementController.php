@@ -39,53 +39,49 @@ class EvenementController extends Controller
     /**
      * Enregistre un nouvel événement dans la base de données.
      */
-   /**
- * Store a newly created resource in storage.
- */
-public function store(Request $request)
-{
-    // Validation des données du formulaire
-    $request->validate([
-        'nom' => 'required|string|max:255',
-        'date' => 'required|date',
-        'lieu' => 'required|string|max:255',
-        'description' => 'required|string',
-        'nombre_place' => 'required|integer',
-        'date_limite_inscription' => 'required|date',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
-
-    // Traitement de l'image
-    $image = null;
-    if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('public/images');
-        $image = basename($imagePath);
+    public function store(Request $request)
+    {
+        // Validation des données du formulaire
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'date' => 'required|date',
+            'lieu' => 'required|string|max:255',
+            'description' => 'required|string',
+            'nombre_place' => 'required|integer',
+            'date_limite_inscription' => 'required|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        // Traitement de l'image
+        $image = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $image = basename($imagePath);
+        }
+    
+        // Récupérer l'ID de l'association authentifiée
+        $associationId = Auth::guard('association')->id();
+    
+        // Vérifier que l'association existe et est active
+        if (!$associationId) {
+            return redirect()->back()->withErrors(['Association non trouvée ou inactive.']);
+        }
+    
+        // Création de l'événement dans la base de données
+        Evenement::create([
+            'nom' => $request->nom,
+            'date' => $request->date,
+            'lieu' => $request->lieu,
+            'description' => $request->description,
+            'nombre_place' => $request->nombre_place,
+            'date_limite_inscription' => $request->date_limite_inscription,
+            'association_id' => $associationId,
+            'image' => $image,
+        ]);
+    
+        // Redirection vers la liste des événements avec un message de succès
+        return redirect()->route('evenements.index')->with('success', 'Événement ajouté avec succès');
     }
-
-    // Récupérer l'ID de l'association authentifiée
-    $associationId = Auth::guard('association')->id();
-
-    // Vérifier que l'association existe et est active
-    if (!$associationId) {
-        return redirect()->back()->withErrors(['Association non trouvée ou inactive.']);
-    }
-
-    // Création de l'événement dans la base de données
-    Evenement::create([
-        'nom' => $request->nom,
-        'date' => $request->date,
-        'lieu' => $request->lieu,
-        'description' => $request->description,
-        'nombre_place' => $request->nombre_place,
-        'date_limite_inscription' => $request->date_limite_inscription,
-        'association_id' => $associationId,
-        'image' => $image,
-    ]);
-
-    // Redirection vers la liste des événements avec un message de succès
-    return redirect()->route('evenements.index')->with('success', 'Événement ajouté avec succès');
-}
-
 
     /**
      * Affiche les détails d'un événement spécifique.

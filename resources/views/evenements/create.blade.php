@@ -37,11 +37,17 @@
                 <label for="date" class="form-label">Date</label>
                 <input type="date" class="form-control" name="date" id="date" required>
             </div>
+            @error('date')
+            <div class="alert alert-succes">{{ $message }}</div>    
+            @enderror
         </div>
         <div class="mb-3">
             <label for="lieu" class="form-label">Lieu</label>
             <input type="text" class="form-control" name="lieu" id="lieu" placeholder="Entrez le lieu de l'événement" required>
         </div>
+        @error('lieu')
+        <div class="alert alert-succes">{{ $message }}</div>    
+        @enderror
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control" name="description" id="description" placeholder="Entrez la description de l'événement" required></textarea>

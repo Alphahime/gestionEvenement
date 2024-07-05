@@ -1,7 +1,5 @@
 <?php
 
-
-
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\AuthController;
@@ -30,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// Resources
 Route::resource('users', UserController::class);
 Route::resource('authuser', AuthController::class);
 Route::resource('association', AssociationController::class);
@@ -37,11 +36,13 @@ Route::resource('admin', AdminController::class);
 Route::resource('role', RoleController::class);
 Route::resource('dashboard-association', AssociationController::class);
 
+// Routes spécifiques
 Route::get('/landing', [EvenementController::class, 'landingPage'])->name('landing');
 Route::get('connexion', [AuthController::class, 'create']);
 Route::post('verification_connexion', [AuthController::class, 'store']);
 Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('association.logout');
 
+// Routes protégées pour les associations
 Route::middleware('auth:association')->group(function () {
     Route::resource('evenements', EvenementController::class);
     Route::get('evenements_admin', [EvenementController::class, 'afficher']);
@@ -55,4 +56,3 @@ Route::middleware('auth:association')->group(function () {
     Route::get('profil_user', [UserController::class, 'profil']);
     Route::post('/evenements', [EvenementController::class, 'store'])->name('evenements.store');
 });
-
