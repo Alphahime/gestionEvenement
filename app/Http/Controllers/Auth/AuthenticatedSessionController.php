@@ -27,7 +27,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        $user=$request->user();
+    if($user->email=='ndeyecisse188@gmail.com'){
+    return redirect()->route('association.index');
+    }
+    else
         // return redirect()->intended(route('dashboard', absolute: false));
         return redirect('mes_reservations');
     }

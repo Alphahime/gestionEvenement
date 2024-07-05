@@ -1,56 +1,56 @@
 <?php
 
-namespace Spatie\Permission\Middleware;
+namespace Database\Seeders;
 
-use Closure;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Exceptions\UnauthorizedException;
-use Spatie\Permission\Guard;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Database\Seeder;
 
-class RoleOrPermissionMiddleware
+class RolesAndPermissionsSeeder extends Seeder
 {
-    public function handle($request, Closure $next, $roleOrPermission, $guard = null)
-    {
-        $authGuard = Auth::guard($guard);
-
-        $user = $authGuard->user();
-
-        // For machine-to-machine Passport clients
-        if (! $user && $request->bearerToken() && config('permission.use_passport_client_credentials')) {
-            $user = Guard::getPassportClient($guard);
-        }
-
-        if (! $user) {
-            throw UnauthorizedException::notLoggedIn();
-        }
-
-        if (! method_exists($user, 'hasAnyRole') || ! method_exists($user, 'hasAnyPermission')) {
-            throw UnauthorizedException::missingTraitHasRoles($user);
-        }
-
-        $rolesOrPermissions = is_array($roleOrPermission)
-            ? $roleOrPermission
-            : explode('|', $roleOrPermission);
-
-        if (! $user->canAny($rolesOrPermissions) && ! $user->hasAnyRole($rolesOrPermissions)) {
-            throw UnauthorizedException::forRolesOrPermissions($rolesOrPermissions);
-        }
-
-        return $next($request);
-    }
-
     /**
-     * Specify the role or permission and guard for the middleware.
-     *
-     * @param  array|string  $roleOrPermission
-     * @param  string|null  $guard
-     * @return string
+     * Run the database seeds.
      */
-    public static function using($roleOrPermission, $guard = null)
+    public function run(): void
+    
     {
-        $roleOrPermissionString = is_string($roleOrPermission) ? $roleOrPermission : implode('|', $roleOrPermission);
-        $args = is_null($guard) ? $roleOrPermissionString : "$roleOrPermissionString,$guard";
+        // Réinitialise le cache des rôles et des permissions
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        return static::class.':'.$args;
+        // Crée des permissions pour admin
+        Permission::create(['name' => 'activer association']); // Permission pour activer une association
+        Permission::create(['name' => 'desactiver association']); // Permission pour désactiver une association
+        Permission::create(['name' => 'supprimer association']); // Permission pour supprimer une association
+        Permission::create(['name' => 'supprimer user']); // Permission pour supprimer un utilisateur
+        Permission::create(['name' => 'supprimer evenement']); // Permission pour supprimer un événement
+        Permission::create(['name' => 'creer role']); // Permission pour créer un rôle
+
+        // Crée des permissions pour association
+        Permission::create(['name' => 'modifier association']); // Permission pour modifier une association
+        Permission::create(['name' => 'ajouter evenement']); // Permission pour ajouter un événement
+        Permission::create(['name' => 'modifier evenement']); // Permission pour modifier un événement
+
+        // Crée des rôles et assigne des permissions
+        // Pour l'admin
+        $roleAdmin= Role::create(['name' => 'admin']);
+        $roleAdmin->givePermissionTo([
+            'activer association',
+            'desactiver association',
+            'supprimer association',
+            'supprimer user',
+            'supprimer evenement',
+            'creer role',
+        ]);
+
+        // Pour l'association
+        $roleAssociation= Role::create(['name' => 'association']);
+         Role::create(['name' => 'user']);
+
+        $roleAssociation->givePermissionTo([
+            'modifier association',
+            'ajouter evenement',
+            'supprimer evenement',
+            'modifier evenement',
+        ]);
     }
-}
+    }

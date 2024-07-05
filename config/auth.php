@@ -45,6 +45,11 @@ return [
         'driver' => 'session',
         'provider' => 'associations', // Remplacez par le nom de votre fournisseur
     ],
+
+    'admin' => [ // Ajoutez le guard 'association'
+        'driver' => 'session',
+        'provider' => 'admins', // Remplacez par le nom de votre fournisseur
+    ],
     ],
 
     /*

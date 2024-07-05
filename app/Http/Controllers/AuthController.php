@@ -84,4 +84,21 @@ class AuthController extends Controller
     Auth::guard('association')->logout(); // Déconnexion de l'authentification de l'association
     return redirect('connexion')->with('success', 'Vous avez été déconnecté avec succès.');
 }
+
+
+public function connecter()
+{
+    return view('admins.auth');
+}
+
+public function verifier(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::guard('admin')->attempt($credentials)) {
+        return redirect('admin'); // Redirigez vers le tableau de bord de l'association
+    } else {
+        return redirect('connexion_admin')->withErrors('Vous n\'êtes pas autorisé à vous connecter');
+    }
+}
 }

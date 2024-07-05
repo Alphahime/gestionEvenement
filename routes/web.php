@@ -9,10 +9,12 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\UserController;
-use App\Models\Evenement;
+use App\Http\Middleware\RedirectIfAdminUser;
 
+use App\Models\Evenement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::get('/', function () {
@@ -39,7 +41,8 @@ Route::resource('authuser', AuthController::class);
 Route::resource('association', AssociationController::class);
 
 
-Route::resource('admin', AdminController::class);
+// Route::resource('admin', AdminController::class)->middleware( 'redirect.if.admin.user');
+Route::resource('admin', AdminController::class)->middleware( RedirectIfAdminUser::class);
 
 
 Route::resource('reservations', ReservationController::class);
@@ -94,6 +97,12 @@ Route::post('activation/{id}', [EvenementController::class, 'activation'])->name
 Route::get('mes_reservations',[ReservationController::class, 'reservation']);
 // route pour afficher le profil du user
 Route::get('profil_user',[UserController::class, 'profil']);
+
+// authentification pour admin
+
+// deconnexion des associations
+// Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('association.logout');
+
 
 // Route::resource('evenements', EvenementController::class);
 // Route::get('/evenements', [ReservationController::class, 'index'])->name('reservations.index');
