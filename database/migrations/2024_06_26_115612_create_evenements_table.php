@@ -19,14 +19,11 @@ return new class extends Migration
             $table->text('description');
             $table->integer('nombre_place');
             $table->date('date_limite_inscription');
-
             $table->foreignId('association_id')->constrained()->onDelete('cascade');
-         
-
-            $table->foreignId('association_id')->constrained();
-
+            $table->string('image')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**
