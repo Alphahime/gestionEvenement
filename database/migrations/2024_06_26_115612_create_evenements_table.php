@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreignId('association_id')->constrained()->onDelete('cascade');
          
 
-            $table->foreignId('association_id')->constrained();
+         
 
             $table->timestamps();
         });

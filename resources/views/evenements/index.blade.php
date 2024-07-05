@@ -90,9 +90,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:underline"><i class="fas fa-trash-alt"></i></button>
-                                            <div class="mt-6">
-                                                {{ $evenements->links() }}
-                                            </div> 
+
                                         </form>
                                     </div>
                                 </div>

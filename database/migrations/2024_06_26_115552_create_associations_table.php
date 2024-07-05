@@ -19,10 +19,6 @@ return new class extends Migration
             $table->string('contact');
             $table->string('secteur_activite');
             $table->date('date_creation');
-            $table->string('logo');
-            $table->string('email');
-            $table->string('password');
-            $table->string('ninea');
             $table->timestamps();
         });
     }

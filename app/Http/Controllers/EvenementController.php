@@ -99,6 +99,8 @@ class EvenementController extends Controller
             'association_id' => $request->association_id,
             'image' => $image,
         ]);
+
+         Evenement::create($request->all());
     
         // Redirection vers la liste des réservations
         return redirect()->route('reservations.index')->with('success', 'Événement ajouté avec succès');
