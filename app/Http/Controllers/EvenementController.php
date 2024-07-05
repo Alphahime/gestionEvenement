@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Association;
 use App\Models\Evenement;
 use App\Models\Reservation;
@@ -12,61 +11,27 @@ use Illuminate\Support\Facades\Auth;
 class EvenementController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche une liste des événements paginés.
      */
     public function index()
-
     { 
         $countReservations = Reservation::count();
         $countEvenements = Evenement::count();
-        // $evenements = Evenement::all();
         $evenements = Evenement::paginate(2);
-        return view('evenements.index', compact('evenements', 'countReservations','countEvenements'));
-        
 
-        $evenements= Evenement::all();
-        return view('landingpage', compact('liste_evenements'));
-
-
-    }
-
-    public function deactivation($id){
-        $association=Association::find($id);
-        $association->active=false;
-        $association->save();
-
-        return redirect()->back()->with('success', 'Le compte de l\'association a été désactivé avec succès.');
-    }
-
-    public function activation($id){
-        $association=Association::find($id);
-        $association->active=true;
-        $association->save();
-
-        return redirect()->back()->with('success', 'Le compte de l\'association a été active  avec succès.');
+        return view('evenements.index', compact('evenements', 'countReservations', 'countEvenements'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'un nouvel événement.
      */
     public function create()
     {
-        $association = Auth::guard('association')->user();
-    
-        if (!$association->active) {
-            return redirect()->back()->withErrors(['Votre association est désactivée et ne peut pas créer d\'événements.']);
-        }
-    
-        return view('evenements.create_evenement', compact('association'));
+        return view('evenements.create');
     }
 
-    
-    
-
-    
-
     /**
-     * Store a newly created resource in storage.
+     * Enregistre un nouvel événement dans la base de données.
      */
     public function store(Request $request)
     {
@@ -80,14 +45,22 @@ class EvenementController extends Controller
             'date_limite_inscription' => 'required|date',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+
         // Traitement de l'image
         $image = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
             $image = basename($imagePath);
         }
-    
+
+        // Vérifier si l'ID de l'association est valide
+        $associationId = $request->association_id;
+
+        if (!$associationId || !Association::where('id', $associationId)->exists()) {
+            // Gérer l'erreur ou attribuer une association par défaut
+            $associationId = 1; // ID de l'association par défaut
+        }
+
         // Création de l'événement dans la base de données
         Evenement::create([
             'nom' => $request->nom,
@@ -96,19 +69,15 @@ class EvenementController extends Controller
             'description' => $request->description,
             'nombre_place' => $request->nombre_place,
             'date_limite_inscription' => $request->date_limite_inscription,
-            'association_id' => $request->association_id,
+            'association_id' => $associationId,
             'image' => $image,
         ]);
 
-         Evenement::create($request->all());
-    
-        // Redirection vers la liste des réservations
-        return redirect()->route('reservations.index')->with('success', 'Événement ajouté avec succès');
+        // Redirection vers la liste des événements avec un message de succès
+        return redirect()->route('evenements.index')->with('success', 'Événement ajouté avec succès');
     }
-    
-
     /**
-     * Display the specified resource.
+     * Affiche les détails d'un événement spécifique.
      */
     public function show($id)
     {
@@ -117,7 +86,7 @@ class EvenementController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire d'édition d'un événement.
      */
     public function edit(Evenement $evenement)
     {
@@ -125,7 +94,7 @@ class EvenementController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour un événement dans la base de données.
      */
     public function update(Request $request, Evenement $evenement)
     {
@@ -159,7 +128,7 @@ class EvenementController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprime un événement de la base de données.
      */
     public function destroy(Evenement $evenement)
     {
@@ -167,33 +136,42 @@ class EvenementController extends Controller
         return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès');
     } 
 
+    /**
+     * Désactive un événement dans la base de données.
+     */
+    public function deactivation($id)
+    {
+        $evenement = Evenement::find($id);
+        if (!$evenement) {
+            return redirect()->back()->withErrors(['Événement non trouvé.']);
+        }
+        $evenement->active = false;
+        $evenement->save();
 
-// gestion des evenements du dashbord
-    public function afficher(){
-        // affichages des evenements dans le dashbord de l'admin
-        $evenements= Evenement::all();
-        return view('admins.liste_evenements', compact('evenements'));
-
+        return redirect()->back()->with('success', 'Événement désactivé avec succès.');
     }
-
-    // gestion de la suppression
-    public function suppression($id){
-        $evenement=Evenement::find($id);
-        $evenement->delete();
-        return redirect()->back();
-
-
-    }
-
-   
 
     /**
-     * Affiche la landing page.
+     * Active un événement dans la base de données.
+     */
+    public function activation($id)
+    {
+        $evenement = Evenement::find($id);
+        if (!$evenement) {
+            return redirect()->back()->withErrors(['Événement non trouvé.']);
+        }
+        $evenement->active = true;
+        $evenement->save();
+
+        return redirect()->back()->with('success', 'Événement activé avec succès.');
+    }
+
+    /**
+     * Affiche la landing page avec tous les événements.
      */
     public function landingPage()
     {
         $evenements = Evenement::all(); // Récupère tous les événements
         return view('portails.landing', compact('evenements')); // Transmet les événements à la vue
     }
-    
 }
