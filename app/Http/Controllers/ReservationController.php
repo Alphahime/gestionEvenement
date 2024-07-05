@@ -41,12 +41,12 @@ class ReservationController extends Controller
     
         // Validation des données $request
         $request->validate([
-            'evenements_id' => 'required|exists:evenements,id',
+            'evenement_id' => 'required|exists:evenements,id',
         ]);
     
         $reservation = new Reservation();
         $reservation->user_id = Auth::id(); // Utilise l'ID de l'utilisateur authentifié
-        $reservation->evenements_id = $request->evenements_id;
+        $reservation->evenement_id = $request->evenement_id;
         $reservation->status = 'en attente'; // Statut initial de la réservation
     
         $reservation->save();
@@ -54,7 +54,7 @@ class ReservationController extends Controller
         // Redirection vers la liste des réservations après création
         return redirect('mes_reservations')->with('success', 'Votre réservation a été effectuée avec succès.');
     }
-    
+  
     /**
      * Display the specified resource.
      */

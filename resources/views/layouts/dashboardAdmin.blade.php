@@ -88,7 +88,7 @@
                 </li>
             </ul>
             <div class="logout">
-                <a href="#" class="block py-2 px-4 hover:bg-yellow-500 hover:text-white">
+                <a href="{{ route('logout') }}" class="block py-2 px-4 hover:bg-yellow-500 hover:text-white">
                     <i class="fas fa-sign-out-alt mr-2 text-yellow-500"></i> Déconnexion
                 </a>
             </div>

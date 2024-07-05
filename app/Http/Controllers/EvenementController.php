@@ -25,11 +25,30 @@ class EvenementController extends Controller
     /**
      * Affiche le formulaire de création d'un nouvel événement.
      */
+    // public function create()
+    // {
+        // Vérifie si l'association de l'utilisateur connecté est activée
+        // $user = Auth::user();
+        // if (!$user->association || !$user->association->active) {
+        //     abort(403, 'Vous n\'êtes pas autorisé à ajouter un événement.');
+        // }
+        // else{
+        //     return view('evenements.create');
+        // }
+
+    // }
+
     public function create()
     {
-        return view('evenements.create');
-    }
+        $association = Auth::guard('association')->user();
 
+        // Vérifie si l'association est activée
+        if ($association->active) {
+            return view('evenements.create');
+        } else {
+            return redirect()->back()->with('error', 'Votre association doit être activée pour ajouter un événement.');
+        }
+    }
     /**
      * Enregistre un nouvel événement dans la base de données.
      */
@@ -141,29 +160,32 @@ class EvenementController extends Controller
      */
     public function deactivation($id)
     {
-        $evenement = Evenement::find($id);
-        if (!$evenement) {
+        $association = Association::find($id);
+        if (!$association) {
             return redirect()->back()->withErrors(['Événement non trouvé.']);
-        }
-        $evenement->active = false;
-        $evenement->save();
-
-        return redirect()->back()->with('success', 'Événement désactivé avec succès.');
+        }else{
+            $association->active = false;
+            $association->save();
     }
+        
+        return redirect()->back()->with('success', 'Association desactivé avec succès.');
+    }
+
 
     /**
      * Active un événement dans la base de données.
      */
     public function activation($id)
     {
-        $evenement = Evenement::find($id);
-        if (!$evenement) {
+        $association = Association::find($id);
+        if (!$association) {
             return redirect()->back()->withErrors(['Événement non trouvé.']);
-        }
-        $evenement->active = true;
-        $evenement->save();
-
-        return redirect()->back()->with('success', 'Événement activé avec succès.');
+        }else{
+            $association->active = true;
+            $association->save();
+    }
+        
+        return redirect()->back()->with('success', 'Association activé avec succès.');
     }
 
     /**
@@ -173,5 +195,11 @@ class EvenementController extends Controller
     {
         $evenements = Evenement::all(); // Récupère tous les événements
         return view('portails.landing', compact('evenements')); // Transmet les événements à la vue
+    }
+
+    public function afficher(){
+        $evenements = Evenement::all(); // Récupère tous les événements
+        return view('admins.liste_evenements', compact('evenements')); // Transmet les événements à la vue
+
     }
 }

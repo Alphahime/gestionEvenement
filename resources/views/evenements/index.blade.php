@@ -32,7 +32,10 @@
             </ul>
         </div>
     @endif
+
     <div class="top-bar flex justify-between items-center p-4 bg-gray-200">
+
+    
         <div class="association">
             <h1>Bonjour</h1>
             @if (Auth::guard('association')->check())
@@ -41,6 +44,11 @@
                 <h1>Invité</h1>
             @endif
         </div>
+        @if ($message = Session::get('error'))
+    <div class="alert alert-danger">
+        {{ $message }}
+    </div>
+@endif
         <button id="burger-menu" class="block md:hidden text-yellow-500">
             <i class="fas fa-bars"></i>
         </button>

@@ -24,14 +24,14 @@
             @if(Auth::check())
             <form action="{{ route('reservations.store') }}" method="POST">
                 @csrf
-                    <input type="hidden" name="evenements_id" value="{{ $evenement->id }}">
+                    <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
                     <button type="submit" class="btn btn-primary">Confirmer ma réservation</button>
                 </form>
             @else
                 <a id="loginLink" href="{{ route('login') }}" class="btn btn-primary">Se connecter pour réserver</a>
                 <form action="{{ route('reservations.store') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="evenements_id" value="{{ $evenement->id }}">
+                    <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
                     <button type="submit" class="btn btn-primary">Réserver ma place</button>
                 </form>
 

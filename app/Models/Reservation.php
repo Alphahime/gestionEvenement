@@ -13,13 +13,18 @@ class Reservation extends Model
         'status',
     ];
 
-    public function evenement()
+    public function evenements()
     {
-        return $this->belongsTo(Evenement::class, 'evenements_id');
+        return $this->belongsToMany(Evenement::class, 'reservations');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function evenement()
+    {
+        return $this->belongsTo(Evenement::class, 'evenement_id');
     }
 }

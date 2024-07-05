@@ -77,9 +77,7 @@
     <p class="card-text">Status: {{ $reservation->status }}</p>
 </div>
 </div>
-{{-- <div class="mt-6">
-    {{ $reservations->links() }}
-</div>  --}}
+
 @endforeach
 @endsection
 </body>

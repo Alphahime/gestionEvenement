@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('associations', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->boolean('active')->default(true);
             $table->text('description');
             $table->string('adresse');
             $table->string('contact');
